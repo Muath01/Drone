@@ -8,6 +8,7 @@ public class Main {
     	Canvas rect = new Canvas(25, 15, 'x');
     	
     	rect.showIt(2, 2, 'D');
+//    	
     	
     }
 

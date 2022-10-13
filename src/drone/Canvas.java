@@ -4,18 +4,26 @@ public class Canvas {
 	
 	
 	
+	public Canvas(int w, int h, char border) {
+		horizental(w, border);
+		
+		for(int i = 0; i < h; i++) {
+			vertical(w, border);
+			
+		}
+		
+		horizental(w, border);
+	}
 
-		void displayCanvas(int w, int h, char border) {
-			
-			horizental(w, border);
-			
+		void showIt(int w, int h, char drone) {
+			System.out.print("hello");
 			for(int i = 0; i < h; i++) {
-				vertical(w, border);
+				
+				if(h == 5) {
+					System.out.print(drone);
+				}
 				
 			}
-			
-			horizental(w, border);
-
 		}
 		
 		

@@ -1,14 +1,23 @@
 package drone;
+import java.util.Random;
+
 
 public class Canvas {
 	
-	
+	char myDrone = 'X';
+    Random rand = new Random(); //instance of random class
+
 	
 	public Canvas(int w, int h, char border) {
+		
+		
+		
 		horizental(w, border);
 		
 		for(int i = 0; i < h; i++) {
-			vertical(w, border);
+			
+			
+			vertical(w, i, border);
 			
 		}
 		
@@ -16,21 +25,23 @@ public class Canvas {
 	}
 
 		void showIt(int w, int h, char drone) {
-			System.out.print("hello");
-			for(int i = 0; i < h; i++) {
-				
-				if(h == 5) {
-					System.out.print(drone);
-				}
-				
+			int int_random = rand.nextInt(15); 
+			if(w == int_random && h == int_random) {
+
+			      System.out.print(drone);
+
 			}
 		}
 		
 		
-		void vertical(int w, char border) {
+		void vertical(int w,int h, char border) {
 			System.out.print(border);
 			
 			for(int i = 0; i < w - 2; i++) {
+				
+				showIt(h, i , 'D');
+				
+				
 				System.out.print(' ');
 			}
 			System.out.println(border);
@@ -42,6 +53,7 @@ public class Canvas {
 		void horizental(int w, char border) {
 			
 			for(int i = 0; i < w -1; i++) {
+				
 				System.out.print(border);
 			}
 			System.out.println(border);

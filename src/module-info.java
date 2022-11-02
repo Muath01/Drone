@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author muath
- *
- */
-module drone {
-}

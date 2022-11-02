@@ -1,4 +1,5 @@
-package drone;
+package src;
+
 import java.util.Random;
 
 
@@ -23,12 +24,14 @@ public class Canvas {
 		
 		horizental(w, border);
 	}
+	
+	// Show the Drone
 
 		void showIt(int w, int h, char drone) {
-			int int_random = rand.nextInt(15); 
+			int int_random = rand.nextInt(14); 
 			if(w == int_random && h == int_random) {
 
-			      System.out.print(drone);
+			      System.out.print(h);
 
 			}
 		}
@@ -60,4 +63,5 @@ public class Canvas {
 		}
 
 	}
+
 

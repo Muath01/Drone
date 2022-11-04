@@ -1,39 +1,32 @@
 package src;
 
-
-
+import java.util.*;
+import java.util.Random;
 
 public class DroneArena extends Drone{
 	
 	char myDrone = 'X';
 	char border = '-';
-	boolean showDrone = true;
-	int w;
-	int h;
+	static boolean showDrone = false;
+	static int w;
+	static int h;
+	static String hello = "hello";
 	
 	
 	public DroneArena(int w, int h) {
 		super(20, 1);
-//		super(w, h, border);
 		
-		this.w = w;
-		this.h = h;
+		DroneArena.w = w;
+		DroneArena.h = h;
 	
-		horizental(w, border);
-		
-		for(int i = 0; i < h; i++) {
-			
-						
-			vertical(w, i, border);
-			
-		}
-		
-		horizental(w, border);
 	}
 	
 	
 	
 	public void draw() {
+		
+		
+		
 		horizental(this.w, border);
 		
        for(int i = 0; i < this.h; i++) {
@@ -42,14 +35,38 @@ public class DroneArena extends Drone{
 			vertical(this.w, i, border);
 			
 		}
-         showDrone = false;
+//         showDrone = false;
 		
 		horizental(this.w, border);
 		
 		
 	}
 	
+	public void addDrone(int w, int y) {
+		
+		int[] arr = {w, y};
+
+//    	List<int[]> drones = new ArrayList<>();
+    	
+    	drones.add(arr);
+    	
+//    	System.out.println(drones.size());
+    	
+		showDrone = true;
+	}
+	
 	public void addDrone() {
+		
+		Random rand = new Random();
+		
+		int w = rand.nextInt(DroneArena.w -1);
+		int y = rand.nextInt(DroneArena.h -1);
+		System.out.println("DW: " + DroneArena.w + " DH: " + DroneArena.h + " w: " + w + " h: " + y);
+		
+		int[] arr = {w, y};
+		
+		drones.add(arr);
+		
 		showDrone = true;
 	}
 

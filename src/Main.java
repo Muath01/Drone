@@ -18,7 +18,7 @@ public class Main {
 		
 		DroneArena arena = new DroneArena(40, 20);
 		
-		test.arena.toString();
+		test.arena.addDrone();
 		test.arena.addDrone();
 		test.arena.addDrone();
 		test.canvas.draw();

@@ -1,6 +1,6 @@
 package src;
 
-import java.util.*;
+import java.util.Arrays;
 import java.util.Random;
 
 public class DroneArena extends Drone{
@@ -52,19 +52,86 @@ public class DroneArena extends Drone{
 		showDrone = true;
 	}
 	
+	
+	
+	public void DroneLocationOccupied(int[] arr, Random rand) {
+		
+			
+			
+			System.out.println("They're equafsadsfdafsddsfsfdl\n");
+			w = rand.nextInt(20);
+			y = rand.nextInt(20);
+			
+			arr[0] = w;
+			arr[1] = y;
+			
+			
+	
+	}
+	
+	
 	public void addDrone() {
+		
 		
 		Random rand = new Random();
 		
-		int w = rand.nextInt(DroneArena.h -1);
-		int y = rand.nextInt(DroneArena.w -1);
-		System.out.println("DW: " + DroneArena.w + " DH: " + DroneArena.h + " h: " + w + " w: " + y);
+//		int w = rand.nextInt(DroneArena.h -1);
+//		int y = rand.nextInt(DroneArena.w - 2);
+		
+		int w = rand.nextInt(2);
+		int y = rand.nextInt(2);
 		
 		int[] arr = {w, y};
 		
+		
+
+		
+		boolean noDuplicates = true;
+		
+		while(noDuplicates) {
+			
+			if(drones.size() >= 1) {
+				
+				for(int i = 0; i < drones.size() ; i++) {
+					
+					if((drones.get(i)[0]) == w && drones.get(i)[1] == y) {
+					System.out.println("They're equal\n");
+//					w = rand.nextInt(2);
+//					y = rand.nextInt(2);
+//					
+//					arr[0] = w;
+//					arr[1] = y;
+					
+					DroneLocationOccupied(arr, rand);
+					
+
+					
+					}else {
+						System.out.println("not Equal: " + i);
+						
+					}	
+					
+				}
 		drones.add(arr);
+		noDuplicates = false;
+	}
+		
+		else {
+				System.out.println("size: " + drones.size());
+				drones.add(arr);
+				noDuplicates = false;
+			}
+		}
+		
+		
+		System.out.println("-------------------------------");
+		
+		
 		
 		showDrone = true;
+		noDuplicates = false;
+		System.out.println("h");
+		
 	}
 
 		

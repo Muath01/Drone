@@ -48,18 +48,15 @@ public class Drone {
 	
 	void showIt(int h, int w, char drone) {
 		
-//		System.out.println(drones.get(0));
-			for(int j = 0; j < drones.size(); j++) {
-//				if((h == drones[j][0]) && (w == drones[j][1])) {
-					if((h == drones.get(j)[0]) && (w == drones.get(j)[1])) {
-//				if((h == randomNumberHeight) && (w == randomNumberWidth)) {
-					System.out.print(drone);
-					
-					return;
-					
-				}
+//		System.out.print(h);
+		for(int j = 0; j < drones.size(); j++) {
+			if((h == drones.get(j)[0]) && (w == drones.get(j)[1])) {
+				System.out.print(drone);
+				return;
 				
 			}
+			
+		}
 			System.out.print(" ");	
 		}
 		

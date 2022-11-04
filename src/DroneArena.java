@@ -27,17 +27,16 @@ public class DroneArena extends Drone{
 		
 		
 		
-		horizental(this.w, border);
+		horizental(DroneArena.w, border);
 		
-       for(int i = 0; i < this.h; i++) {
+       for(int i = 0; i < DroneArena.h; i++) {
 			
 			
-			vertical(this.w, i, border);
+			vertical(DroneArena.w, i, border);
 			
 		}
-//         showDrone = false;
 		
-		horizental(this.w, border);
+		horizental(DroneArena.w, border);
 		
 		
 	}
@@ -46,11 +45,9 @@ public class DroneArena extends Drone{
 		
 		int[] arr = {w, y};
 
-//    	List<int[]> drones = new ArrayList<>();
     	
     	drones.add(arr);
     	
-//    	System.out.println(drones.size());
     	
 		showDrone = true;
 	}
@@ -59,9 +56,9 @@ public class DroneArena extends Drone{
 		
 		Random rand = new Random();
 		
-		int w = rand.nextInt(DroneArena.w -1);
-		int y = rand.nextInt(DroneArena.h -1);
-		System.out.println("DW: " + DroneArena.w + " DH: " + DroneArena.h + " w: " + w + " h: " + y);
+		int w = rand.nextInt(DroneArena.h -1);
+		int y = rand.nextInt(DroneArena.w -1);
+		System.out.println("DW: " + DroneArena.w + " DH: " + DroneArena.h + " h: " + w + " w: " + y);
 		
 		int[] arr = {w, y};
 		
@@ -73,12 +70,12 @@ public class DroneArena extends Drone{
 		
 		void vertical(int w,int h, char border) {
 			System.out.print(border);
-			for(int i = 0; i < w - 2; i++) {
+			for(int i = 0; i < w -2 ; i++) {
 				
 				
 				if(showDrone == true) {
 					showIt(h, i, 'D');
-					
+//					System.out.print(i);
 				}else {
 					System.out.print(" ");
 				}

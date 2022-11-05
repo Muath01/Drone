@@ -54,87 +54,70 @@ public class DroneArena extends Drone{
 	
 	
 	
-	public void DroneLocationOccupied(int[] arr, Random rand) {
+	public void DroneLocationOccupied(int droneSize, int w, int y, int[] arr, Random rand) {
 		
+			w = DroneArena.w - 3;
+			y = DroneArena.h - 1;
 			
+			arr[0] = y;
+			arr[1] = w;
 			
-			System.out.println("They're equafsadsfdafsddsfsfdl\n");
-			w = rand.nextInt(20);
-			y = rand.nextInt(20);
-			
-			arr[0] = w;
-			arr[1] = y;
-			
-			
-	
+			checkForDuplicate(droneSize,w, y, arr,  rand);
 	}
 	
+	public void checkForDuplicate(int droneSize, int w, int y, int[] arr, Random rand) {
+		
+		for(int i = 0; i < drones.size() ; i++) {
+			
+			if((drones.get(i)[0]) == y && drones.get(i)[1] == w) {
+			System.out.println("They're equal\n");
+			DroneLocationOccupied(droneSize,w, y, arr, rand);
+			
+
+			
+			}else {
+				System.out.println("not Equalx: " + i);
+				
+			}
+		}
+}
 	
 	public void addDrone() {
 		
 		
 		Random rand = new Random();
 		
-//		int w = rand.nextInt(DroneArena.h -1);
-//		int y = rand.nextInt(DroneArena.w - 2);
 		
-		int w = rand.nextInt(2);
-		int y = rand.nextInt(2);
+		int w = rand.nextInt(DroneArena.w - 3);
 		
-		int[] arr = {w, y};
+		int y = rand.nextInt(DroneArena.h - 1); /* we subtract 3 because we don't loop over the whole arena in our vertical function. 
+												 we don't loop over the whole arena so the sides of the arena are drawn within instead of 
+												 of it */
 		
 		
-
+		int[] arr = {y, w};
 		
-		boolean noDuplicates = true;
 		
-		while(noDuplicates) {
+		if(drones.size() >= 1) {
 			
-			if(drones.size() >= 1) {
-				
-				for(int i = 0; i < drones.size() ; i++) {
-					
-					if((drones.get(i)[0]) == w && drones.get(i)[1] == y) {
-					System.out.println("They're equal\n");
-//					w = rand.nextInt(2);
-//					y = rand.nextInt(2);
-//					
-//					arr[0] = w;
-//					arr[1] = y;
-					
-					DroneLocationOccupied(arr, rand);
-					
-
-					
-					}else {
-						System.out.println("not Equal: " + i);
-						
-					}	
-					
-				}
-		drones.add(arr);
-		noDuplicates = false;
+			checkForDuplicate(drones.size(), w, y, arr, rand);
+			
+			drones.add(arr);
 	}
 		
 		else {
 				System.out.println("size: " + drones.size());
 				drones.add(arr);
-				noDuplicates = false;
 			}
-		}
-		
 		
 		System.out.println("-------------------------------");
 		
-		
-		
 		showDrone = true;
-		noDuplicates = false;
-		System.out.println("h");
 		
 	}
 
 		
+//	Vertical function draws the sides of the arena and the space with in it. 
 		void vertical(int w,int h, char border) {
 			System.out.print(border);
 			for(int i = 0; i < w -2 ; i++) {
@@ -142,7 +125,7 @@ public class DroneArena extends Drone{
 				
 				if(showDrone == true) {
 					showIt(h, i, 'D');
-//					System.out.print(i);
+//					System.out.print(h);
 				}else {
 					System.out.print(" ");
 				}

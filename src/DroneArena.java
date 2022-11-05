@@ -14,7 +14,7 @@ public class DroneArena extends Drone{
 	
 	
 	public DroneArena(int w, int h) {
-		super(20, 1);
+		super();
 		
 		DroneArena.w = w;
 		DroneArena.h = h;
@@ -43,21 +43,31 @@ public class DroneArena extends Drone{
 	
 	public void addDrone(int w, int y) {
 		
-		int[] arr = {w, y};
+		Random rand = new Random();
 
-    	
-    	drones.add(arr);
-    	
-    	
-		showDrone = true;
-	}
+		int[] arr = {y, w};
+		
+		String errorMessage = "The position (" + w + "," + y + ") is occupied, please choose a different coordinate";
+		
+	if(drones.size() >= 1) {
+		
+		checkForDuplicate(drones.size(), w, y, arr, errorMessage);
+		drones.add(arr);
+	}else {
+		System.out.println("size: " + drones.size());
+		drones.add(arr);
+		}
 	
+	showDrone = true;
 	
+}
+	
+
 	
 	public void DroneLocationOccupied(int droneSize, int w, int y, int[] arr, Random rand) {
 		
-			w = DroneArena.w - 3;
-			y = DroneArena.h - 1;
+			w = rand.nextInt(DroneArena.w - 3);
+			y = rand.nextInt(DroneArena.h - 1);
 			
 			arr[0] = y;
 			arr[1] = w;
@@ -65,29 +75,49 @@ public class DroneArena extends Drone{
 			checkForDuplicate(droneSize,w, y, arr,  rand);
 	}
 	
+	public void checkForDuplicate(int droneSize, int w, int y, int[] arr, String errorMessage) {
+		
+		for(int i = 0; i < drones.size() ; i++) {
+			
+			if((drones.get(i)[0]) == y && drones.get(i)[1] == w) {
+			System.out.println(errorMessage);
+			System.exit(y);
+			
+				
+		}
+	}
+}
+	
 	public void checkForDuplicate(int droneSize, int w, int y, int[] arr, Random rand) {
 		
 		for(int i = 0; i < drones.size() ; i++) {
 			
 			if((drones.get(i)[0]) == y && drones.get(i)[1] == w) {
-			System.out.println("They're equal\n");
+//			System.out.println("They're equal\n");
+//			System.out.println("The position you placed your drone at is occupied, choose a different coordinate! ");
+//			System.exit(y);
 			DroneLocationOccupied(droneSize,w, y, arr, rand);
 			
 
 			
 			}else {
-				System.out.println("not Equalx: " + i);
+//				System.out.println("not Equalx: " + i);
 				
 			}
+//			System.out.println("-------------------------------");
 		}
 }
+	
 	
 	public void addDrone() {
 		
 		
+		System.out.println(id);
+		
 		Random rand = new Random();
 		
 		
+		int yd = 12;
 		int w = rand.nextInt(DroneArena.w - 3);
 		
 		int y = rand.nextInt(DroneArena.h - 1); /* we subtract 3 because we don't loop over the whole arena in our vertical function. 
@@ -100,17 +130,22 @@ public class DroneArena extends Drone{
 		
 		if(drones.size() >= 1) {
 			
+			
 			checkForDuplicate(drones.size(), w, y, arr, rand);
 			
 			drones.add(arr);
+			id++;
 	}
 		
 		else {
-				System.out.println("size: " + drones.size());
+//				System.out.println("size: " + drones.size());
 				drones.add(arr);
+				droneY = y;
+				droneX = w;
+				id++;
 			}
 		
-		System.out.println("-------------------------------");
+		
 		
 		showDrone = true;
 		

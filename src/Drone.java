@@ -6,20 +6,12 @@ import java.util.Random;
 
 public class Drone {
 	
-	int y;
-	int x;
+	int droneX;
+	int droneY;
 	int id;
 	DroneArena arena;
-	
-//	protected int[][] drones = {{1, 10}, {13, 10}};
-
 	static List<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
 	int[] nums = {8,2};
-	
-	
-	
-	
-	
 	private static int counter;
 	Random numberGenerator = new Random();
 	int randomNumberWidth = numberGenerator.nextInt(10);
@@ -30,17 +22,16 @@ public class Drone {
 	
 	
 	
-	public Drone(int x, int y) {
+	public Drone() {
 
-		this.x = x;
-		this.y = y;
 		
 		this.id = counter;
 		counter++;
 	}
 	
 	public String toString() {
-		String location = "Drone " + this.id + " is at " + this.x + ", " + this.y;
+		System.out.println("hello");
+		String location = "Drone " + this.id + " is at " + this.droneX + ", " + this.droneY;
 		return location;
 	}
 
@@ -52,6 +43,7 @@ public class Drone {
 		for(int j = 0; j < drones.size(); j++) {
 			if((h == drones.get(j)[0]) && (w == drones.get(j)[1])) {
 				System.out.print(drone);
+//				this.x = w;
 				return;
 				
 			}

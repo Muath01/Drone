@@ -1,27 +1,35 @@
 package src;
 
+import src.DroneArena;
+
 public class Main {
 
 	public static void main(String[] args) {
 		
+
 //		DroneArena arena = new DroneArena(40, 20);
-//		arena.addDrone();
 //		
-//		ConsoleCanvas canvas = new ConsoleCanvas();
+//		DroneInterface test = new DroneInterface(arena);
 //		
-//		canvas.draw();
 //		
+//		test.getArena().addDrone(10,10);
+//		test.getArena().addDrone();
+//		test.getArena().draw();
+//		System.out.println(test.getArena().toString());
+//		System.out.println(test.getArena().toString());
 		
-		DroneInterface test = new DroneInterface();
+//		System.out.println(test.arena.toString());
+
+//		test.canvas.draw();
+//		test.draw();
 		
-//		in.arena.addDrone();
+		DroneArena test = new DroneArena(40, 20);
+//		test.addDrone();
+//		test.addDrone();
+		test.addDrone();
+		test.draw();
+		System.out.println(test.toString());
 		
-		DroneArena arena = new DroneArena(40, 20);
-		
-		test.arena.addDrone();
-		test.arena.addDrone();
-		test.arena.addDrone();
-		test.canvas.draw();
 		
 	
 	}

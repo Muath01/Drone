@@ -30,8 +30,8 @@ public class Drone {
 	}
 	
 	public String toString() {
-		System.out.println("hello");
 		String location = "Drone " + this.id + " is at " + this.droneX + ", " + this.droneY;
+		System.out.println("Location: " + location);
 		return location;
 	}
 

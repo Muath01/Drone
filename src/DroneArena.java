@@ -3,22 +3,33 @@ package src;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * @author muath
+ *
+ */
 public class DroneArena extends Drone{
 	
-	char myDrone = 'X';
 	char border = '-';
 	static boolean showDrone = false;
 	static int w;
 	static int h;
 	static String hello = "hello";
+	private Test myTest;
+	private Drone newDrone;
 	
 	
 	public DroneArena(int w, int h) {
 		super();
 		
+		newDrone = new Drone();
 		DroneArena.w = w;
 		DroneArena.h = h;
+		this.draw();
 	
+	}
+	
+	public Drone getDrone() {
+		return newDrone;
 	}
 	
 	
@@ -93,9 +104,6 @@ public class DroneArena extends Drone{
 		for(int i = 0; i < drones.size() ; i++) {
 			
 			if((drones.get(i)[0]) == y && drones.get(i)[1] == w) {
-//			System.out.println("They're equal\n");
-//			System.out.println("The position you placed your drone at is occupied, choose a different coordinate! ");
-//			System.exit(y);
 			DroneLocationOccupied(droneSize,w, y, arr, rand);
 			
 
@@ -112,7 +120,7 @@ public class DroneArena extends Drone{
 	public void addDrone() {
 		
 		
-		System.out.println(id);
+//		System.out.println("inside the add Drone function");
 		
 		Random rand = new Random();
 		
@@ -140,15 +148,20 @@ public class DroneArena extends Drone{
 		else {
 //				System.out.println("size: " + drones.size());
 				drones.add(arr);
-				droneY = y;
-				droneX = w;
+				
 				id++;
 			}
 		
 		
-		
+		droneY = y;
+		droneX = w;
 		showDrone = true;
+		this.draw();
 		
+	}
+	
+	public Test getTest() {
+		return myTest;
 	}
 
 		

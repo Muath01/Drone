@@ -1,9 +1,9 @@
 package src;
 
-public class ConsoleCanvas extends DroneArena {
+public class ConsoleCanvas extends Canvas {
 
 	public ConsoleCanvas(){
-		super(w,h);
+		super(1,0, '#');
 	}
 	
 	

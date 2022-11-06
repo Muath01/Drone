@@ -12,7 +12,6 @@ public class Canvas {
 	public Canvas(int w, int h, char border) {
 		
 		
-		
 		horizental(w, border);
 		
 		for(int i = 0; i < h; i++) {
@@ -43,7 +42,6 @@ public class Canvas {
 			for(int i = 0; i < w - 2; i++) {
 				
 				showIt(h, i , 'D');
-				
 				
 				System.out.print(' ');
 			}

@@ -14,7 +14,6 @@ public class DroneArena extends Drone{
 	static int w;
 	static int h;
 	static String hello = "hello";
-	private Test myTest;
 	private Drone newDrone;
 	
 	
@@ -142,14 +141,14 @@ public class DroneArena extends Drone{
 			checkForDuplicate(drones.size(), w, y, arr, rand);
 			
 			drones.add(arr);
-			id++;
+			droneId++;
 	}
 		
 		else {
 //				System.out.println("size: " + drones.size());
 				drones.add(arr);
 				
-				id++;
+				droneId++;
 			}
 		
 		

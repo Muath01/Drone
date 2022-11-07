@@ -6,31 +6,20 @@ import java.util.Random;
 
 public class Drone {
 	
-	int droneX;
-	int droneY;
-	int id;
+	int droneX, droneY, droneId, dy, dx; // droneX & droneY are the positions of the drone, 
+	private static int counter;
 	DroneArena arena;
 	static List<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
-	int[] nums = {8,2};
-	private static int counter;
-	Random numberGenerator = new Random();
-	int randomNumberWidth = numberGenerator.nextInt(10);
-	int randomNumberHeight = numberGenerator.nextInt(10);
 	
 
-	
-	
-	
-	
 	public Drone() {
-
 		
-		this.id = counter;
-		counter++;
+		this.droneId = counter++;
 	}
 	
+	
 	public String toString() {
-		String location = "Drone " + this.id + " is at " + this.droneX + ", " + this.droneY;
+		String location = "Drone " + this.droneId + " is at " + this.droneX + ", " + this.droneY;
 		System.out.println("Location: " + location);
 		return location;
 	}
@@ -39,11 +28,9 @@ public class Drone {
 	
 	void showIt(int h, int w, char drone) {
 		
-//		System.out.print(h);
 		for(int j = 0; j < drones.size(); j++) {
 			if((h == drones.get(j)[0]) && (w == drones.get(j)[1])) {
 				System.out.print(drone);
-//				this.x = w;
 				return;
 				
 			}
@@ -52,6 +39,5 @@ public class Drone {
 			System.out.print(" ");	
 		}
 		
-
 	
 }

@@ -1,6 +1,6 @@
 package src;
 
-public class ConsoleCanvas extends Canvas {
+public class ConsoleCanvas  {
 
 	public ConsoleCanvas(){
 		super(1,0, '#');

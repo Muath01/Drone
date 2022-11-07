@@ -9,24 +9,65 @@ import java.util.Random;
  */
 public class DroneArena extends Drone{
 	
-	char border = '-';
+	char border = '#';
 	static boolean showDrone = false;
 	static int w;
 	static int h;
-	static String hello = "hello";
 	private Drone newDrone;
 	
 	
 	public DroneArena(int w, int h) {
-		super();
+		super(10, 10);
 		
-		newDrone = new Drone();
+		newDrone = new Drone(10, 15);
 		DroneArena.w = w;
 		DroneArena.h = h;
-		this.draw();
+		this.addDrone();
+//		this.draw();
 	
 	}
+	public DroneArena(String s){
+		super(0, 0);
+		StringSplitter ss = new StringSplitter(s, ";");
+		StringSplitter sbp = new StringSplitter(ss.getNth(0, "5 10"), " ");
+		w = sbp.getNthInt(0, 5);
+		h = sbp.getNthInt(1, 8);
+		newDrone = new Drone(ss.getNth(1, "2 5"));
+	}
 	
+	public void moveArena() {
+		newDrone.moveDrone(this);
+	}
+	
+	
+	public int canGoHere(int x, int y) {
+		int status = 0;
+		
+		if(x < 0 || x >= w) status += 1;
+		if(y < 0 || y >= h) status += 2;
+		return status;
+	}
+	
+	@Override
+	public String toString() {
+		return "DroneArena size " + w + " by " + h + " with Drone " + newDrone.droneId + " at " + newDrone.droneX + ", " + newDrone.droneY ;
+	}
+
+
+
+
+	public int getW() {
+		return w;
+	}
+
+
+	public int getH() {
+		System.out.println("Lets gooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+		return h;
+	}
+
+
+
 	public Drone getDrone() {
 		return newDrone;
 	}
@@ -159,9 +200,7 @@ public class DroneArena extends Drone{
 		
 	}
 	
-	public Test getTest() {
-		return myTest;
-	}
+	
 
 		
 //	Vertical function draws the sides of the arena and the space with in it. 
@@ -197,4 +236,14 @@ public class DroneArena extends Drone{
 			System.out.println(border);
 		}
 
-	}
+		public static void main (String[] args) {
+			DroneArena da = new DroneArena("20 12;16 9");
+			System.out.println(da.toString());
+			
+			for (int ct = 0; ct < 20; ct++) {
+				da.moveArena();
+				System.out.println(da.toString());
+			}
+		}
+
+}

@@ -10,6 +10,7 @@ public class Main {
 		DroneInterface myInterface = new DroneInterface(30, 20);
 		
 		
+		myInterface.myArena.toString();
 		
 	}
 

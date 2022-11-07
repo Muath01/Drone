@@ -13,7 +13,7 @@ public class DroneInterface {
 	public DroneInterface(int w, int y) {
 		super();
 		s = new Scanner(System.in);
-		this.myArena = new DroneArena(w, y);
+		myArena = new DroneArena(w, y);
 	
 	
 	
@@ -33,7 +33,7 @@ public class DroneInterface {
 			break;
 		case 'I':
 		case 'i':
-			myArena.toString();
+			System.out.println(myArena.toString());
 			break;
 		case 'x': 
 			ch = 'X';

@@ -7,16 +7,33 @@ public class Main {
 	public static void main(String[] args) {
 
 		
-//		DroneInterface myInterface = new DroneInterface(30, 20);
+
+//		DroneArena arena = new DroneArena(20, 5);
 		
-//		Drone drone = new Drone(10, 3);
-		
-		DroneArena arena = new DroneArena(40, 20);
-		
-		
-//		System.out.println(arena.toString);
-		arena.moveTest();
-		
+//		arena.moveTest();
+
+
+
+		int width = 40;
+		int height = 10;
+
+		char[][] myarr = new char[height][width];
+
+		for(int i = 0; i < height; i++){
+			for(int j = 0; j < width; j++){
+				if(j > width-2 || j == 0 || i == 0 || i == height-1){
+					myarr[i][j] = '#';
+				}else{
+					myarr[i][j] = ' ';
+				}
+			}
+		}
+
+
+		for(int i = 0; i < myarr.length; i++){
+			System.out.println(myarr[i]);
+		}
+
 	}
 
 }

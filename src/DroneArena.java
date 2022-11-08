@@ -1,8 +1,6 @@
 package src;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author muath
@@ -15,6 +13,7 @@ public class DroneArena extends Drone{
 	static int w;
 	static int h;
 	private Drone newDrone;
+	static ArrayList<Drone> newDroneList = new ArrayList<Drone>();
 	
 	
 	public DroneArena(int w, int h) {
@@ -40,10 +39,9 @@ public class DroneArena extends Drone{
 	public void moveTest() {
 		
 		Drone myFinalDrone = new Drone(50, 43);
-		newDroneList.add(newDrone);
 		newDroneList.add(myFinalDrone);
 		
-		System.out.println(newDroneList.get(0));
+		System.out.println(newDroneList.get(0).droneX);
 	}
 	
 	public void moveArena() {
@@ -79,9 +77,7 @@ public class DroneArena extends Drone{
 
 
 
-	public Drone getDrone() {
-		return newDrone;
-	}
+
 	
 	
 	
@@ -108,16 +104,17 @@ public class DroneArena extends Drone{
 		Random rand = new Random();
 
 		int[] arr = {y, w};
+
 		
 		String errorMessage = "The position (" + w + "," + y + ") is occupied, please choose a different coordinate";
 		
 	if(drones.size() >= 1) {
 		
 		checkForDuplicate(drones.size(), w, y, arr, errorMessage);
-		drones.add(arr);
+		drones.add(new Drone(y, w));
 	}else {
 		System.out.println("size: " + drones.size());
-		drones.add(arr);
+		drones.add(new Drone(y, w));
 		}
 	
 	showDrone = true;
@@ -141,7 +138,7 @@ public class DroneArena extends Drone{
 		
 		for(int i = 0; i < drones.size() ; i++) {
 			
-			if((drones.get(i)[0]) == y && drones.get(i)[1] == w) {
+			if((drones.get(i).droneY) == y && drones.get(i).droneX == w) {
 			System.out.println(errorMessage);
 			System.exit(y);
 			
@@ -154,7 +151,7 @@ public class DroneArena extends Drone{
 		
 		for(int i = 0; i < drones.size() ; i++) {
 			
-			if((drones.get(i)[0]) == y && drones.get(i)[1] == w) {
+			if((drones.get(i).droneY) == y && drones.get(i).droneX == w) {
 			DroneLocationOccupied(droneSize,w, y, arr, rand);
 			
 
@@ -192,15 +189,16 @@ public class DroneArena extends Drone{
 			
 			checkForDuplicate(drones.size(), w, y, arr, rand);
 			
-			drones.add(arr);
+			drones.add(new Drone(y, w));
 			droneId++;
 	}
 		
 		else {
 //				System.out.println("size: " + drones.size());
-				drones.add(arr);
-				
-				droneId++;
+			drones.add(new Drone(y, w));
+
+
+			droneId++;
 			}
 		
 		

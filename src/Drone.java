@@ -10,8 +10,9 @@ public class Drone {
 	int droneX, droneY, droneId, dy, dx; // droneX & droneY are the positions of the drone, 
 	private static int counter;
 	DroneArena arena;
-	static List<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
-	static List<Drone> newDroneList = new ArrayList<>();
+//	static ArrayList<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
+	static ArrayList<Drone> drones = new ArrayList<Drone>();
+
 
 	public Drone(int x, int y) {
 		
@@ -92,7 +93,7 @@ public class Drone {
 	void showIt(int h, int w, char drone) {
 		
 		for(int j = 0; j < drones.size(); j++) {
-			if((h == drones.get(j)[0]) && (w == drones.get(j)[1])) {
+			if((h == drones.get(j).droneX) && (w == drones.get(j).droneY)) {
 				System.out.print(drone);
 				return;
 				

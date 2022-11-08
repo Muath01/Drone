@@ -34,7 +34,9 @@ public class Drone {
 //		setXY(ss.getNthInt(0, 5), ss.getNthInt(1, 8));
 //	}
 	
-	
+	public int getDrone() {
+		return 21;
+	}
 	public int getDroneX() {
 		return droneX;
 	}

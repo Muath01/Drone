@@ -11,7 +11,7 @@ public class Drone {
 	private static int counter;
 	DroneArena arena;
 	static List<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
-	
+	static List<Drone> newDroneList = new ArrayList<>();
 
 	public Drone(int x, int y) {
 		
@@ -65,7 +65,7 @@ public class Drone {
 		
 		switch(da.canGoHere(newx, newy)) {
 		case 0:
-			
+
 			droneX = newx;
 			droneY = newy;
 			break;

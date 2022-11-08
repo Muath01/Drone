@@ -1,6 +1,7 @@
 package src;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Random;
 
 /**
@@ -19,10 +20,11 @@ public class DroneArena extends Drone{
 	public DroneArena(int w, int h) {
 		super(10, 10);
 		
-		newDrone = new Drone(10, 15);
+		newDrone = new Drone(10, 16);
 		DroneArena.w = w;
 		DroneArena.h = h;
 		this.addDrone();
+		
 //		this.draw();
 	
 	}
@@ -33,6 +35,17 @@ public class DroneArena extends Drone{
 		w = sbp.getNthInt(0, 5);
 		h = sbp.getNthInt(1, 8);
 		newDrone = new Drone(ss.getNth(1, "2 5"));
+	}
+	
+	public void moveTest() {
+		
+		Drone myFinalDrone = new Drone(50, 43);
+		newDroneList.add(newDrone);
+		newDroneList.add(myFinalDrone);
+		
+		for (int i = 0; i < newDroneList.size(); i++) {
+			System.out.println(newDroneList.get(i));
+		}
 	}
 	
 	public void moveArena() {

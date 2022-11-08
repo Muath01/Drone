@@ -14,12 +14,8 @@ public class Main {
 		DroneArena arena = new DroneArena(40, 20);
 		
 		
-		
-//		for (int i = 0; i < 19; i++) {
-//			arena.moveArena();
-//			System.out.println(arena.toString());
-//			
-//		}
+//		System.out.println(arena.toString);
+		arena.moveTest();
 		
 	}
 

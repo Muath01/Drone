@@ -236,14 +236,6 @@ public class DroneArena extends Drone{
 			System.out.println(border);
 		}
 
-		public static void main (String[] args) {
-			DroneArena da = new DroneArena("20 12;16 9");
-			System.out.println(da.toString());
-			
-			for (int ct = 0; ct < 20; ct++) {
-				da.moveArena();
-				System.out.println(da.toString());
-			}
-		}
+		
 
 }

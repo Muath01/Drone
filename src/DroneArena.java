@@ -39,17 +39,11 @@ public class DroneArena extends Drone{
 	
 	public void moveTest() {
 		
-		drones.get(0)[0] = 1;
-		drones.get(0)[1] = 1;
+		Drone myFinalDrone = new Drone(50, 43);
+		newDroneList.add(newDrone);
+		newDroneList.add(myFinalDrone);
 		
-		draw();
-		
-		
-//		for (int i = 0; i < newDroneList.size(); i++) {
-//			if((50 == newDroneList.get(i).) && 50 == newDroneList.get(i)[i]) {
-//				System.out.println("we go a match");
-//			}
-//		}
+		System.out.println(newDroneList.get(0));
 	}
 	
 	public void moveArena() {

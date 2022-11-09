@@ -17,22 +17,28 @@ public class Main {
 		int width = 40;
 		int height = 10;
 
-		char[][] myarr = new char[height][width];
+		String[][] myarr = new String[height][width];
 
 		for(int i = 0; i < height; i++){
 			for(int j = 0; j < width; j++){
 				if(j > width-2 || j == 0 || i == 0 || i == height-1){
-					myarr[i][j] = '#';
+					myarr[i][j] = "@";
 				}else{
-					myarr[i][j] = ' ';
+					myarr[i][j] = " ";
 				}
 			}
 		}
 
 
+
+		String myString = "";
 		for(int i = 0; i < myarr.length; i++){
-			System.out.println(myarr[i]);
+//			System.out.println(myarr[i]);
+			myString += myarr[0];
 		}
+
+		System.out.println(myString);
+
 
 	}
 

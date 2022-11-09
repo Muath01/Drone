@@ -13,16 +13,19 @@ public class DroneArena extends Drone{
 	static int w;
 	static int h;
 	private Drone newDrone;
+	char[][] myarr;
+
 	static ArrayList<Drone> newDroneList = new ArrayList<Drone>();
 	
 	
 	public DroneArena(int w, int h) {
 		super(10, 10);
-		
+
+		this.myarr = new char[h][w];
 		newDrone = new Drone(10, 16);
 		DroneArena.w = w;
 		DroneArena.h = h;
-		this.addDrone();
+//		this.addDrone();
 		
 //		this.draw();
 	
@@ -57,10 +60,10 @@ public class DroneArena extends Drone{
 		return status;
 	}
 	
-	@Override
-	public String toString() {
-		return "DroneArena size " + w + " by " + h + " with Drone " + newDrone.droneId + " at " + newDrone.droneX + ", " + newDrone.droneY ;
-	}
+//	@Override
+//	public String toString() {
+//		return "DroneArena size " + w + " by " + h + " with Drone " + newDrone.droneId + " at " + newDrone.droneX + ", " + newDrone.droneY ;
+//	}
 
 
 
@@ -82,22 +85,43 @@ public class DroneArena extends Drone{
 	
 	
 	public void draw() {
-		
-		
-		
-		horizental(DroneArena.w, border);
-		
-       for(int i = 0; i < DroneArena.h; i++) {
-			
-			
-			vertical(DroneArena.w, i, border);
-			
+
+
+		for(int i = 0; i < DroneArena.h; i++){
+			for(int j = 0; j < DroneArena.w; j++){
+				if(j > DroneArena.w-2 || j == 0 || i == 0 || i == DroneArena.h-1){
+					myarr[i][j] = '#';
+				}else{
+					myarr[i][j] = ' ';
+				}
+			}
+
+
 		}
+		for(int i = 0; i < myarr.length; i++){
+			System.out.println(myarr[i]);
+		}
+//		horizental(DroneArena.w, border);
 		
-		horizental(DroneArena.w, border);
+//       for(int i = 0; i < DroneArena.h; i++) {
+//
+//			vertical(DroneArena.w, i, border);
+//
+//		}
+//		horizental(DroneArena.w, border);
 		
 		
 	}
+
+	public String toString() {
+		String arena = "";
+		for (int i = 0; i < myarr.length; i++) {
+			arena += myarr[i];
+		}
+
+		return arena;
+	}
+
 	
 	public void addDrone(int w, int y) {
 		
@@ -245,6 +269,11 @@ public class DroneArena extends Drone{
 			System.out.println(border);
 		}
 
+		public static void main(String[] args){
+
+			DroneArena drone = new DroneArena(20, 10);
+			drone.draw();
+		}
 		
 
 }

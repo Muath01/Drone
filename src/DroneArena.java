@@ -27,9 +27,6 @@ public class DroneArena extends Drone{
 		DroneArena.h = h;
 		this.createArena();
 
-//		this.addDrone();
-		
-//		this.draw();
 	
 	}
 	public DroneArena(String s){
@@ -41,19 +38,10 @@ public class DroneArena extends Drone{
 		newDrone = new Drone(ss.getNth(1, "2 5"));
 	}
 	
-	public void moveTest() {
-		
-		Drone myFinalDrone = new Drone(50, 43);
-		dronesArray.add(myFinalDrone);
-		
-		System.out.println(dronesArray.get(0).droneX);
-	}
-	
 	public void moveArena() {
 		newDrone.moveDrone(this);
 	}
-	
-	
+
 	public int canGoHere(int x, int y) {
 		int status = 0;
 		
@@ -62,10 +50,10 @@ public class DroneArena extends Drone{
 		return status;
 	}
 	
-//	@Override
-//	public String toString() {
-//		return "DroneArena size " + w + " by " + h + " with Drone " + newDrone.droneId + " at " + newDrone.droneX + ", " + newDrone.droneY ;
-//	}
+	@Override
+	public String toString() {
+		return "DroneArena size " + w + " by " + h + " with Drone " + dronesArray.get(dronesArray.size() -1).droneId + " at " + dronesArray.get(dronesArray.size() -1).droneX + ", " + dronesArray.get(dronesArray.size() -1).droneY ;
+	}
 
 
 
@@ -106,19 +94,53 @@ public class DroneArena extends Drone{
 		
 	}
 
+
 	public void draw(){
 		for(int i = 0; i < myarr.length; i++){
 			System.out.println(myarr[i]);
 		}
 	}
 
-	public String toString() {
-		String arena = "";
-		for (int i = 0; i < myarr.length; i++) {
-			arena += myarr[i];
+
+
+	public void addDrone() {
+
+
+//		System.out.println("inside the add Drone function");
+
+		Random rand = new Random();
+
+
+		int w = rand.nextInt(1 , DroneArena.w - 3);
+
+		int y = rand.nextInt(1, DroneArena.h - 1); /* we subtract 3 because we don't loop over the whole arena in our vertical function.
+												 we don't loop over the whole arena so the sides of the arena are drawn within instead of
+												 of it */
+
+		int[] arr = {y, w};
+
+		if(dronesArray.size() >= 1) {
+
+
+			checkForDuplicate(dronesArray.size(), w, y, arr, rand);
+
+			dronesArray.add(new Drone(y, w));
+			droneId++;
 		}
 
-		return arena;
+		else {
+//				System.out.println("size: " + dronesArray.size());
+			dronesArray.add(new Drone(y, w));
+
+
+			droneId++;
+		}
+
+
+		droneY = y;
+		droneX = w;
+		showDrone();
+
 	}
 
 	
@@ -143,6 +165,7 @@ public class DroneArena extends Drone{
 		}
 	
 	showDrone = true;
+	showDrone();
 	
 }
 	
@@ -190,49 +213,7 @@ public class DroneArena extends Drone{
 }
 	
 	
-	public void addDrone() {
-		
-		
-//		System.out.println("inside the add Drone function");
-		
-		Random rand = new Random();
-		
-		
-		int yd = 12;
-		int w = rand.nextInt(DroneArena.w - 3);
-		
-		int y = rand.nextInt(DroneArena.h - 1); /* we subtract 3 because we don't loop over the whole arena in our vertical function. 
-												 we don't loop over the whole arena so the sides of the arena are drawn within instead of 
-												 of it */
-		
-		
-		int[] arr = {y, w};
-		
-		
-		if(dronesArray.size() >= 1) {
-			
-			
-			checkForDuplicate(dronesArray.size(), w, y, arr, rand);
-			
-			dronesArray.add(new Drone(y, w));
-			droneId++;
-	}
-		
-		else {
-//				System.out.println("size: " + dronesArray.size());
-			dronesArray.add(new Drone(y, w));
 
-
-			droneId++;
-			}
-		
-		
-		droneY = y;
-		droneX = w;
-		showDrone = true;
-		this.draw();
-		
-	}
 	
 	
 
@@ -243,32 +224,27 @@ public class DroneArena extends Drone{
 
 		for (int i = 0; i < dronesArray.size(); i++) {
 
-			for (int j = 0; j < DroneArena.h; j++) {
+			for (int j = 1; j < DroneArena.h; j++) {
 
-				for (int k = 0; k < DroneArena.w; k++) {
+				for (int k = 1; k < DroneArena.w; k++) {
 //					System.out.print(DroneArena.h + " ");
 					if ((j == dronesArray.get(i).droneX) && (k == dronesArray.get(i).droneY)) {
 						myarr[j][k]= 'D';
-
-
 					}
-
 				}
 
 			}
 		}
 	}
-		
-		
-
 
 		public static void main(String[] args){
 
 			DroneArena drone = new DroneArena(40, 10);
 
-			drone.addDrone(10, 8);
-			drone.showDrone();
+			drone.addDrone(1, 1);
+//			drone.showDrone();
 			drone.draw();
+			System.out.println(drone.toString());
 
 		}
 		

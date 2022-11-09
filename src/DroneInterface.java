@@ -6,7 +6,7 @@ public class DroneInterface {
 	
 	private Scanner s;
 	DroneArena myArena;
-	ConsoleCanvas myCanvas;
+//	ConsoleCanvas myCanvas;
 //	ConsoleCanvas canvas = new ConsoleCanvas();
 	
 	
@@ -15,7 +15,7 @@ public class DroneInterface {
 		super();
 		s = new Scanner(System.in);
 		myArena = new DroneArena(w, y);
-		myCanvas = new ConsoleCanvas(w, y);
+//		myCanvas = new ConsoleCanvas(w, y);
 	
 	
 	

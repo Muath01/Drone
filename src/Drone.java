@@ -61,34 +61,35 @@ public class Drone {
 		return location;
 	}
 	
-	public void moveDrone(DroneArena da, Drone drone) {
+	public void moveDrone(DroneArena da, ArrayList<Drone> drone) {
 		
-		int newx = droneX + dx;
-		int newy = droneY + dy;
-
-		switch(da.canGoHere(newx, newy)) {
-
-			case 0:
-
-
-			droneX = newx;
-			droneY = newy;
-			break;
-		case 1:
-			dx = -dx;
-			break;
-		case 2:
-//			System.out.println("here");
-			drone.droneY = -dy;
-//			dy = -dy;
-
-			break;
-		case 3:
-			dx = -dx;
-			dy = -dy;
-			break;
-		
+		System.out.println();
+		for(int i = 0; i < drone.size(); i++) {
+			int newx = drone.get(i).droneX + dx;
+			int newy = drone.get(i).droneY + dy;
+			System.out.println(drone.get(i));
+			switch(da.canGoHere(newx, newy)) {
+			
+				case 0:
+					drone.get(i).droneX = newx;
+					drone.get(i).droneY = newy;
+					break;
+				case 1:
+					drone.get(i).droneX = newx;
+					drone.get(i).droneY = newy;
+					dx = -dx;
+					break;
+				case 2:
+					dy = -dy;
+					break;
+				case 3:
+					dx = -dx;
+					dy = -dy;
+					break;
+				
+			}
 		}
+
 	}
 
 	

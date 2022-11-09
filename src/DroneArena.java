@@ -14,7 +14,7 @@ public class DroneArena extends Drone{
 	static int w;
 	static int h;
 	private Drone newDrone;
-	private ConsoleCanvas arenCanvas = new ConsoleCanvas(20, 20);
+//	private ConsoleCanvas arenCanvas = new ConsoleCanvas(20, 20);
 	char[][] myarr;
 
 	ArrayList<Drone> dronesArray = new ArrayList<Drone>();
@@ -43,14 +43,15 @@ public class DroneArena extends Drone{
 	}
 	
 	public void moveArena() {
-		newDrone.moveDrone(this, newDrone);
+		newDrone.moveDrone(this, dronesArray);
+		this.draw();
 	}
 
 	public int canGoHere(int x, int y) {
 		int status = 0;
 		
-		if(x < 0 || x >= w) status += 1;
-		if(y < 0 || y >= h) status += 2;
+		if(x < 1 || x >= w-1) status += 1;
+		if(y < 1 || y >= h-1) status += 2;
 		return status;
 	}
 	
@@ -72,11 +73,6 @@ public class DroneArena extends Drone{
 		return h;
 	}
 
-
-
-
-	
-	
 	
 	public void createArena() {
 
@@ -107,10 +103,18 @@ public class DroneArena extends Drone{
 
 	public void keyDrawing(){
 
-		for(int i = 0; i < 10005; i++){
-			this.moveArena();
-			this.draw();
-		}
+		try {
+			for(int i = 0; i < 250; i++){
+                Thread.sleep(1000);
+				this.moveArena();
+				this.draw();
+			}
+			
+		} catch (Exception e) {
+           
+            // catching the exception
+            System.out.println(e);
+        }
 	}
 
 
@@ -249,16 +253,16 @@ public class DroneArena extends Drone{
 		}
 	}
 
-		public static void main(String[] args){
-
-			DroneArena drone = new DroneArena(40, 10);
-
-			drone.addDrone(1, 1);
-//			drone.showDrone();
-			drone.draw();
-			System.out.println(drone.toString());
-
-		}
+//		public static void main(String[] args){
+//
+//			DroneArena drone = new DroneArena(40, 10);
+//
+//			drone.addDrone(1, 1);
+////			drone.showDrone();
+//			drone.draw();
+//			System.out.println(drone.toString());
+//
+//		}
 		
 
 }

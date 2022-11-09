@@ -2,6 +2,8 @@ package src;
 
 import src.DroneArena;
 
+import java.util.concurrent.TimeUnit;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -14,30 +16,8 @@ public class Main {
 
 
 
-		int width = 40;
-		int height = 10;
+		DroneInterface myinf = new DroneInterface(25, 25);
 
-		String[][] myarr = new String[height][width];
-
-		for(int i = 0; i < height; i++){
-			for(int j = 0; j < width; j++){
-				if(j > width-2 || j == 0 || i == 0 || i == height-1){
-					myarr[i][j] = "@";
-				}else{
-					myarr[i][j] = " ";
-				}
-			}
-		}
-
-
-
-		String myString = "";
-		for(int i = 0; i < myarr.length; i++){
-//			System.out.println(myarr[i]);
-			myString += myarr[0];
-		}
-
-		System.out.println(myString);
 
 
 	}
@@ -47,4 +27,6 @@ public class Main {
 
 
 
-
+// What am I supposed to display from the console canvas - if arena with drones where do I get the drone list from?
+// am I supposed to display the drones within the arena in the Drone class, if yes, where do I get the drone list from?
+// How to clear drone from it's previous position once you've moved it once.

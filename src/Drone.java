@@ -21,6 +21,8 @@ public class Drone {
 		dy = 1;
 		dx = 1;
 	}
+
+
 	
 	public Drone(String s) {
 		this(0, 0);
@@ -59,14 +61,15 @@ public class Drone {
 		return location;
 	}
 	
-	public void moveDrone(DroneArena da) {
+	public void moveDrone(DroneArena da, Drone drone) {
 		
 		int newx = droneX + dx;
 		int newy = droneY + dy;
-	
-		
+
 		switch(da.canGoHere(newx, newy)) {
-		case 0:
+
+			case 0:
+
 
 			droneX = newx;
 			droneY = newy;
@@ -75,7 +78,10 @@ public class Drone {
 			dx = -dx;
 			break;
 		case 2:
-			dy = -dy;
+//			System.out.println("here");
+			drone.droneY = -dy;
+//			dy = -dy;
+
 			break;
 		case 3:
 			dx = -dx;

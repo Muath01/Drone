@@ -1,6 +1,7 @@
 package src;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author muath
@@ -13,16 +14,19 @@ public class DroneArena extends Drone{
 	static int w;
 	static int h;
 	private Drone newDrone;
+	private ConsoleCanvas arenCanvas = new ConsoleCanvas(20, 20);
 	char[][] myarr;
 
-	static ArrayList<Drone> dronesArray = new ArrayList<Drone>();
+	ArrayList<Drone> dronesArray = new ArrayList<Drone>();
 	
 	
 	public DroneArena(int w, int h) {
 		super(10, 10);
-
+		System.out.println("in construcrp");
 		this.myarr = new char[h][w];
+
 		newDrone = new Drone(10, 16);
+		dronesArray.add(newDrone);
 		DroneArena.w = w;
 		DroneArena.h = h;
 		this.createArena();
@@ -39,7 +43,7 @@ public class DroneArena extends Drone{
 	}
 	
 	public void moveArena() {
-		newDrone.moveDrone(this);
+		newDrone.moveDrone(this, newDrone);
 	}
 
 	public int canGoHere(int x, int y) {
@@ -89,15 +93,23 @@ public class DroneArena extends Drone{
 
 		}
 
-
-		
-		
 	}
 
 
 	public void draw(){
+
+		this.createArena();
+		this.showDrone();
 		for(int i = 0; i < myarr.length; i++){
 			System.out.println(myarr[i]);
+		}
+	}
+
+	public void keyDrawing(){
+
+		for(int i = 0; i < 10005; i++){
+			this.moveArena();
+			this.draw();
 		}
 	}
 

@@ -15,7 +15,7 @@ public class DroneArena extends Drone{
 	private Drone newDrone;
 	char[][] myarr;
 
-	static ArrayList<Drone> newDroneList = new ArrayList<Drone>();
+	static ArrayList<Drone> dronesArray = new ArrayList<Drone>();
 	
 	
 	public DroneArena(int w, int h) {
@@ -25,6 +25,8 @@ public class DroneArena extends Drone{
 		newDrone = new Drone(10, 16);
 		DroneArena.w = w;
 		DroneArena.h = h;
+		this.createArena();
+
 //		this.addDrone();
 		
 //		this.draw();
@@ -42,9 +44,9 @@ public class DroneArena extends Drone{
 	public void moveTest() {
 		
 		Drone myFinalDrone = new Drone(50, 43);
-		newDroneList.add(myFinalDrone);
+		dronesArray.add(myFinalDrone);
 		
-		System.out.println(newDroneList.get(0).droneX);
+		System.out.println(dronesArray.get(0).droneX);
 	}
 	
 	public void moveArena() {
@@ -84,7 +86,7 @@ public class DroneArena extends Drone{
 	
 	
 	
-	public void draw() {
+	public void createArena() {
 
 
 		for(int i = 0; i < DroneArena.h; i++){
@@ -98,19 +100,16 @@ public class DroneArena extends Drone{
 
 
 		}
+
+
+		
+		
+	}
+
+	public void draw(){
 		for(int i = 0; i < myarr.length; i++){
 			System.out.println(myarr[i]);
 		}
-//		horizental(DroneArena.w, border);
-		
-//       for(int i = 0; i < DroneArena.h; i++) {
-//
-//			vertical(DroneArena.w, i, border);
-//
-//		}
-//		horizental(DroneArena.w, border);
-		
-		
 	}
 
 	public String toString() {
@@ -124,6 +123,8 @@ public class DroneArena extends Drone{
 
 	
 	public void addDrone(int w, int y) {
+
+
 		
 		Random rand = new Random();
 
@@ -132,13 +133,13 @@ public class DroneArena extends Drone{
 		
 		String errorMessage = "The position (" + w + "," + y + ") is occupied, please choose a different coordinate";
 		
-	if(drones.size() >= 1) {
+	if(dronesArray.size() >= 1) {
 		
-		checkForDuplicate(drones.size(), w, y, arr, errorMessage);
-		drones.add(new Drone(y, w));
+		checkForDuplicate(dronesArray.size(), w, y, arr, errorMessage);
+		dronesArray.add(new Drone(y, w));
 	}else {
-		System.out.println("size: " + drones.size());
-		drones.add(new Drone(y, w));
+		System.out.println("size: " + dronesArray.size());
+		dronesArray.add(new Drone(y, w));
 		}
 	
 	showDrone = true;
@@ -160,9 +161,9 @@ public class DroneArena extends Drone{
 	
 	public void checkForDuplicate(int droneSize, int w, int y, int[] arr, String errorMessage) {
 		
-		for(int i = 0; i < drones.size() ; i++) {
+		for(int i = 0; i < dronesArray.size() ; i++) {
 			
-			if((drones.get(i).droneY) == y && drones.get(i).droneX == w) {
+			if((dronesArray.get(i).droneY) == y && dronesArray.get(i).droneX == w) {
 			System.out.println(errorMessage);
 			System.exit(y);
 			
@@ -173,9 +174,9 @@ public class DroneArena extends Drone{
 	
 	public void checkForDuplicate(int droneSize, int w, int y, int[] arr, Random rand) {
 		
-		for(int i = 0; i < drones.size() ; i++) {
+		for(int i = 0; i < dronesArray.size() ; i++) {
 			
-			if((drones.get(i).droneY) == y && drones.get(i).droneX == w) {
+			if((dronesArray.get(i).droneY) == y && dronesArray.get(i).droneX == w) {
 			DroneLocationOccupied(droneSize,w, y, arr, rand);
 			
 
@@ -208,18 +209,18 @@ public class DroneArena extends Drone{
 		int[] arr = {y, w};
 		
 		
-		if(drones.size() >= 1) {
+		if(dronesArray.size() >= 1) {
 			
 			
-			checkForDuplicate(drones.size(), w, y, arr, rand);
+			checkForDuplicate(dronesArray.size(), w, y, arr, rand);
 			
-			drones.add(new Drone(y, w));
+			dronesArray.add(new Drone(y, w));
 			droneId++;
 	}
 		
 		else {
-//				System.out.println("size: " + drones.size());
-			drones.add(new Drone(y, w));
+//				System.out.println("size: " + dronesArray.size());
+			dronesArray.add(new Drone(y, w));
 
 
 			droneId++;
@@ -236,43 +237,39 @@ public class DroneArena extends Drone{
 	
 
 		
-//	Vertical function draws the sides of the arena and the space with in it. 
-		void vertical(int w,int h, char border) {
-			System.out.print(border);
-			for(int i = 0; i < w -2 ; i++) {
-				
-				
-				if(showDrone == true) {
-					showIt(h, i, 'D');
-//					System.out.print(h);
-				}else {
-					System.out.print(" ");
+//	Vertical function draws the sides of the arena and the space with in it.
+
+	public void showDrone() {
+
+		for (int i = 0; i < dronesArray.size(); i++) {
+
+			for (int j = 0; j < DroneArena.h; j++) {
+
+				for (int k = 0; k < DroneArena.w; k++) {
+//					System.out.print(DroneArena.h + " ");
+					if ((j == dronesArray.get(i).droneX) && (k == dronesArray.get(i).droneY)) {
+						myarr[j][k]= 'D';
+
+
+					}
+
 				}
-				
-				
-					
-				}
-			
-			System.out.println(border);
-				
-			
-			
-		}
-		
-		
-		void horizental(int w, char border) {
-			
-			for(int i = 0; i < w -1; i++) {
-				
-				System.out.print(border);
+
 			}
-			System.out.println(border);
 		}
+	}
+		
+		
+
 
 		public static void main(String[] args){
 
-			DroneArena drone = new DroneArena(20, 10);
+			DroneArena drone = new DroneArena(40, 10);
+
+			drone.addDrone(10, 8);
+			drone.showDrone();
 			drone.draw();
+
 		}
 		
 

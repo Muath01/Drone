@@ -13,7 +13,6 @@ public class Drone {
 //	static ArrayList<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
 	static ArrayList<Drone> drones = new ArrayList<Drone>();
 
-
 	public Drone(int x, int y) {
 		
 		droneX = x;

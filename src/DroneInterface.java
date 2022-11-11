@@ -25,7 +25,7 @@ public class DroneInterface {
 	char ch = ' ';
 	
 	do {
-		System.out.print("Enter (A)dd drone, (D)isplay arena with Drones, (M)ove Drone, (S)ize, (V)iew Arena with no drones, get (I)nformation or e(X)it : ");
+		System.out.print("Enter (A)dd drone, (D)isplay arena with Drones, (S)how arena without drones,  (M)ove Drone, (S)ize, (V)iew Arena with no drones, get (I)nformation or e(X)it : ");
 		ch = s.next().charAt(0);
 		
 		switch(ch) {
@@ -52,11 +52,11 @@ public class DroneInterface {
 				break;
 			case 'S':
 			case 's':
-				System.out.println(myArena.dronesArray.size());
+				myCanvas.draw();
 				break;
 			case 'K':
 			case 'k':
-				myArena.keyDrawing();
+				myArena.moveDrones();
 				break;
 			case 'x':
 				ch = 'X';

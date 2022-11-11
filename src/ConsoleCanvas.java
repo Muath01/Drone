@@ -41,11 +41,9 @@ public class ConsoleCanvas  {
     }
 
     public String toString() {
-
     
         String myString = "Canvas with size " + canvasX + " by " + canvasY;
     
-
         return myString;
 
     }

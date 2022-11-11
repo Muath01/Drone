@@ -11,13 +11,9 @@ import java.util.*;
 public class Drone {
 	
 	int droneX, droneY, droneId, dy, dx; // droneX & droneY are the positions of the drone, 
-	private static int counter;
 	DroneArena arena;
-//	static ArrayList<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
-	static ArrayList<Drone> drones = new ArrayList<Drone>();
 	Directions.direction droneDirection;
-//	Directions.direction dir = direction.getRandomDirection();
-
+	private static int counter;
 
 	
 
@@ -32,12 +28,6 @@ public class Drone {
 	}
 
 
-	
-	public Drone(String s) {
-		this(0, 0);
-		StringSplitter ss = new StringSplitter(s, " ");
-		setDroneXY(ss.getNthInt(0, 5), ss.getNthInt(1, 8));
-	}
 	
 //	public Drone(String s) {
 //		this(0, 0);
@@ -76,7 +66,7 @@ public class Drone {
 		for(int i = 0; i < drone.size(); i++) {
 			int newx = drone.get(i).droneX + dx;
 			int newy = drone.get(i).droneY + dy;
-			System.out.println(dx);
+//			System.out.println(dx);
 			switch(da.canGoHere(newx, newy, droneDirection)) {
 			
 				case 0:
@@ -105,18 +95,7 @@ public class Drone {
 	
 
 
-	void showIt(int h, int w, char drone) {
-		
-		for(int j = 0; j < drones.size(); j++) {
-			if((h == drones.get(j).droneX) && (w == drones.get(j).droneY)) {
-				System.out.print(drone);
-				return;
-				
-			}
-			
-		}
-			System.out.print(" ");	
-		}
+
 	
 //	public static void main(String[] args) {
 //

@@ -18,7 +18,7 @@ public class Main {
 		
 		
 		
-		DroneInterface enf = new DroneInterface(30, 30);
+		DroneInterface enf = new DroneInterface(20, 20);
 
 	}}
 

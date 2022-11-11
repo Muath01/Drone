@@ -16,9 +16,7 @@ public class Main {
 
 
 
-		DroneInterface myinf = new DroneInterface(25, 25);
-
-
+		DroneInterface myinf = new DroneInterface(50, 10);
 
 	}
 

@@ -6,6 +6,7 @@ public class DroneInterface {
 	
 	private Scanner s;
 	DroneArena myArena;
+	ConsoleCanvas myCanvas;
 //	ConsoleCanvas myCanvas;
 //	ConsoleCanvas canvas = new ConsoleCanvas();
 	
@@ -15,7 +16,7 @@ public class DroneInterface {
 		super();
 		s = new Scanner(System.in);
 		myArena = new DroneArena(w, y);
-//		myCanvas = new ConsoleCanvas(w, y);
+		myCanvas = new ConsoleCanvas(w, y);
 	
 	
 	
@@ -24,7 +25,7 @@ public class DroneInterface {
 	char ch = ' ';
 	
 	do {
-		System.out.print("Enter (A)dd drone, (D)isplay arena, (M)ove Drone, (S)ize,  get (I)nformation or e(X)it : ");
+		System.out.print("Enter (A)dd drone, (D)isplay arena with Drones, (M)ove Drone, (S)ize, (V)iew Arena with no drones, get (I)nformation or e(X)it : ");
 		ch = s.next().charAt(0);
 		
 		switch(ch) {
@@ -32,6 +33,10 @@ public class DroneInterface {
 			case 'd':
 			case 'D':
 				myArena.draw();
+				break;
+			case 'V':
+			case 'v':
+				myCanvas.draw();
 				break;
 			case 'A':
 			case 'a':

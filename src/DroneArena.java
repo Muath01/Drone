@@ -25,13 +25,12 @@ public class DroneArena extends Drone{
 		System.out.println("in construcrp");
 		this.myarr = new char[h][w];
 
-		newDrone = new Drone(10, 16);
+		newDrone = new Drone(5, 5);
 		dronesArray.add(newDrone);
 		DroneArena.w = w;
 		DroneArena.h = h;
 		this.createArena();
 
-	
 	}
 	public DroneArena(String s){
 		super(0, 0);
@@ -105,7 +104,7 @@ public class DroneArena extends Drone{
 
 		try {
 			for(int i = 0; i < 250; i++){
-                Thread.sleep(1000);
+                Thread.sleep(150);
 				this.moveArena();
 				this.draw();
 			}
@@ -116,8 +115,6 @@ public class DroneArena extends Drone{
             System.out.println(e);
         }
 	}
-
-
 
 	public void addDrone() {
 

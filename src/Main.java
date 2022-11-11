@@ -1,26 +1,26 @@
 package src;
 
+import src.Directions.direction;
 import src.DroneArena;
 
 import java.util.concurrent.TimeUnit;
 
 public class Main {
+	
+	enum months{
+		JAN, FEB, MAR, APR;
+	}
 
 	public static void main(String[] args) {
 
+		months month = months.APR;
 		
-
-//		DroneArena arena = new DroneArena(20, 5);
 		
-//		arena.moveTest();
+		
+		
+		DroneInterface enf = new DroneInterface(30, 30);
 
-
-
-		DroneInterface myinf = new DroneInterface(50, 10);
-
-	}
-
-}
+	}}
 
 
 

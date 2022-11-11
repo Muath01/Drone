@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
+import src.Directions.direction;
+
 import java.util.*;
 
 public class Drone {
@@ -12,6 +15,11 @@ public class Drone {
 	DroneArena arena;
 //	static ArrayList<int[]> drones = new ArrayList<>(); // a 2d list, will take in other arrays, each representing a drone position.
 	static ArrayList<Drone> drones = new ArrayList<Drone>();
+	Directions.direction droneDirection;
+//	Directions.direction dir = direction.getRandomDirection();
+
+
+	
 
 	public Drone(int x, int y) {
 		
@@ -20,6 +28,7 @@ public class Drone {
 		this.droneId = counter++;
 		dy = 1;
 		dx = 1;
+		droneDirection = direction.getRandomDirection();
 	}
 
 
@@ -63,20 +72,20 @@ public class Drone {
 	
 	public void moveDrone(DroneArena da, ArrayList<Drone> drone) {
 		
-		System.out.println();
+							
 		for(int i = 0; i < drone.size(); i++) {
 			int newx = drone.get(i).droneX + dx;
 			int newy = drone.get(i).droneY + dy;
-			System.out.println(drone.get(i));
-			switch(da.canGoHere(newx, newy)) {
+			System.out.println(dx);
+			switch(da.canGoHere(newx, newy, droneDirection)) {
 			
 				case 0:
 					drone.get(i).droneX = newx;
 					drone.get(i).droneY = newy;
 					break;
 				case 1:
-					drone.get(i).droneX = newx;
-					drone.get(i).droneY = newy;
+//					drone.get(i).droneX = newx;
+//					drone.get(i).droneY = newy;
 					dx = -dx;
 					break;
 				case 2:

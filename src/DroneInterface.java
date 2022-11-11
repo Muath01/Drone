@@ -42,7 +42,6 @@ public class DroneInterface {
 			case 'a':
 				myArena.addDrone(); // Adds a drone in a unique random position
 				break;
-
 			case 'M':
 			case 'm':
 				myArena.moveArena();

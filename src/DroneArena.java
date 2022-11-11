@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @author muath
  *
  */
-public class DroneArena extends Drone{
+public class DroneArena {
 	
 	char border = '#';
 	static boolean showDrone = false;
@@ -21,7 +21,6 @@ public class DroneArena extends Drone{
 	
 	
 	public DroneArena(int w, int h) {
-		super(10, 10);
 		System.out.println("in construcrp");
 		this.myarr = new char[h][w];
 
@@ -33,7 +32,6 @@ public class DroneArena extends Drone{
 
 	}
 	public DroneArena(String s){
-		super(0, 0);
 		StringSplitter ss = new StringSplitter(s, ";");
 		StringSplitter sbp = new StringSplitter(ss.getNth(0, "5 10"), " ");
 		w = sbp.getNthInt(0, 5);
@@ -46,11 +44,13 @@ public class DroneArena extends Drone{
 		this.draw();
 	}
 
-	public int canGoHere(int x, int y) {
+	public int canGoHere(int x, int y, Directions.direction dir) {
 		int status = 0;
 		
-		if(x < 1 || x >= w-1) status += 1;
-		if(y < 1 || y >= h-1) status += 2;
+		if(x < 1 || x >= w -1) status += 1;
+		if(y < 1 || y >= h -1) status += 2;
+		
+//		System.out.println("status: " + status);
 		return status;
 	}
 	
@@ -103,7 +103,7 @@ public class DroneArena extends Drone{
 	public void keyDrawing(){
 
 		try {
-			for(int i = 0; i < 250; i++){
+			for(int i = 0; i < 350; i++){
                 Thread.sleep(150);
 				this.moveArena();
 				this.draw();
@@ -137,21 +137,21 @@ public class DroneArena extends Drone{
 
 			checkForDuplicate(dronesArray.size(), w, y, arr, rand);
 
-			dronesArray.add(new Drone(y, w));
-			droneId++;
+			dronesArray.add(new Drone(w, y));
+			newDrone.droneId++;
 		}
 
 		else {
 //				System.out.println("size: " + dronesArray.size());
-			dronesArray.add(new Drone(y, w));
+			dronesArray.add(new Drone(w, y));
 
 
-			droneId++;
+			newDrone.droneId++;
 		}
 
 
-		droneY = y;
-		droneX = w;
+		newDrone.droneY = y;
+		newDrone.droneX = w;
 		showDrone();
 
 	}
@@ -241,7 +241,7 @@ public class DroneArena extends Drone{
 
 				for (int k = 1; k < DroneArena.w; k++) {
 //					System.out.print(DroneArena.h + " ");
-					if ((j == dronesArray.get(i).droneX) && (k == dronesArray.get(i).droneY)) {
+					if ((j == dronesArray.get(i).droneY) && (k == dronesArray.get(i).droneX)) {
 						myarr[j][k]= 'D';
 					}
 				}

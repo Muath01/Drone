@@ -42,11 +42,9 @@ public class ConsoleCanvas  {
 
     public String toString() {
 
-        canvasX -= 2;
-        canvasY -= 2;
-        String myString = "Cnvas with size " + canvasX + " by " + canvasY;
-        canvasX =+ 2;
-        canvasY += 1;
+    
+        String myString = "Canvas with size " + canvasX + " by " + canvasY;
+    
 
         return myString;
 

@@ -12,7 +12,7 @@ public class ConsoleCanvas  {
 
         canvasX = x ;
         canvasY = y;
-        myarr = new char[canvasY][canvasX];
+        myarr = new char[canvasX][canvasY];
 
         createArena();
     }
@@ -20,9 +20,9 @@ public class ConsoleCanvas  {
     public void createArena() {
 
 
-        for(int i = 0; i < canvasY; i++){
-            for(int j = 0; j < canvasX; j++){
-                if(j > canvasX-2 || j == 0 || i == 0 || i == canvasY-1){
+        for(int i = 0; i < canvasX; i++){
+            for(int j = 0; j < canvasY; j++){
+                if(i > canvasX-2 || i == 0 || j == 0 || j == canvasY-1){
                     myarr[i][j] = '#';
                 }else{
                     myarr[i][j] = ' ';
@@ -44,18 +44,6 @@ public class ConsoleCanvas  {
     	myarr[droneX][droneY] = c; // adds the char representing the drone to the array that prints the canvas, and instead of printing empty char ' ' it now print a drone char. 
     }
     
-    public void arenaOnly() {
-    	char[][] ao = new char[canvasY][canvasX];
-    	
-    	for(int i = 0; i < canvasX; i++) {
-    		for(int j = 0; j < canvasY; j++) {
-    			if(myarr[i][j] == 'D') {
-    				myarr[i][j] = ' ';
-    			}
-    		}
-    	}
-    	
-    }
 
     public String toString() {
     
@@ -63,6 +51,8 @@ public class ConsoleCanvas  {
         
         for(int i = 0; i < canvasX; i++) {
         	for(int j = 0; j < canvasY; j++) {
+        		
+        		System.out.println("i:" + canvasY);
         		canvas += myarr[i][j] + " ";
         	}
         	canvas += "\n";
@@ -70,11 +60,11 @@ public class ConsoleCanvas  {
         return canvas;
 
     }
-
-    public static void main(String[] args){
-        ConsoleCanvas mycan = new ConsoleCanvas(20, 5);
-        mycan.draw();
-        System.out.print(mycan.toString());
-
+    
+    public static void main(String[] arg) {
+    	ConsoleCanvas n = new ConsoleCanvas(10, 10);
+    	System.out.println(n.toString());
     }
+
+   
 }

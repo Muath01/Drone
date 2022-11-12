@@ -30,26 +30,24 @@ public class DroneArena {
 	public void addDrone() {
 
 
-//		System.out.println("inside the add Drone function");
 
 		Random rand = new Random();
 
+		
+		// find a random number between 1-w/h-1. the 1 and -1 is so the drone isn't placed on the border. 
+		int w = rand.nextInt(1, DroneArena.w -1); // 
 
-		int w = rand.nextInt(1 , DroneArena.w - 3);
+		int y = rand.nextInt(1, DroneArena.h -1); 
 
-		int y = rand.nextInt(1, DroneArena.h - 1); /* we subtract 3 because we don't loop over the whole arena in our vertical function.
-												 we don't loop over the whole arena so the sides of the arena are drawn within instead of
-												 of it */
-
-		if(dronesArray.size() >= 1) {
-			checkForDuplicate(dronesArray.size(), w, y, rand);
+		if(dronesArray.size() >= 1) { // if the arena has drones, check for duplicates. 
+			isHere(dronesArray.size(), w, y, rand);
 
 			dronesArray.add(new Drone(w, y));
 			dronesArray.get(dronesArray.size() -1).droneId++;
 			
 		}
 
-		else {
+		else { // if there are no items in the drone. add a new drone with w and y coordinates, because there are no duplicates by definition. 
 			dronesArray.add(new Drone(w, y));
 			dronesArray.get(dronesArray.size() -1).droneId++;
 		}
@@ -58,7 +56,7 @@ public class DroneArena {
 	
 	
 	
-	public void moveArena() {
+	public void moveAllDrones() {
 		dronesArray.get(dronesArray.size()-1).moveDrone(this, dronesArray);
 		this.draw();
 	}
@@ -74,13 +72,21 @@ public class DroneArena {
 	
 	@Override
 	public String toString() {
-		
+		String dronesPositions = "";
 		if(dronesArray.size() == 0) {
 			return "DroneArena size " + w + " by " + h + " with no Drones to display";
 			
 		}
-			return "DroneArena size " + w + " by " + h + " with Drone " + dronesArray.get(dronesArray.size() -1).droneId + " at " + dronesArray.get(dronesArray.size() -1).droneX + ", " + dronesArray.get(dronesArray.size() -1).droneY ;
-	}
+		
+		for(Drone d: dronesArray) {
+			dronesPositions += "DroneArena size " + w + " by " + h;
+			dronesPositions += "with drone" +  d.droneId + " at position " + d.droneX + ", " + d.droneY + "\n"; 
+		}
+		
+		return dronesPositions;
+
+}		
+	
 	
 	
 	// loops over array in consoleCanvas to show all the drones within the arena. 
@@ -135,7 +141,7 @@ public class DroneArena {
 		try {
 			for(int i = 0; i < 350; i++){
                 Thread.sleep(150);
-				this.moveArena();
+				this.moveAllDrones();
 				this.draw();
 			}
 			
@@ -149,56 +155,27 @@ public class DroneArena {
 
 
 	
-	public void addDrone(int w, int y) {
-
-		Random rand = new Random();
-		int[] arr = {y, w};
-		
-		String errorMessage = "The position (" + w + "," + y + ") is occupied, please choose a different coordinate";
-		
-	if(dronesArray.size() >= 1) {
-		
-		checkForDuplicate(dronesArray.size(), w, y, errorMessage);
-		dronesArray.add(new Drone(y, w));
-	}else {
-		System.out.println("size: " + dronesArray.size());
-		dronesArray.add(new Drone(y, w));
-		}
-	
-	showDrone();
-	
-}
-	
 
 	
+	// this function is invoked to find a newly place for a newly created drone who's original position is occupied. 
 	public void DroneLocationOccupied(int droneSize, int w, int y, Random rand) {
 		
-			w = rand.nextInt(DroneArena.w - 3);
+		// create a new random position
+			w = rand.nextInt(DroneArena.w - 3); 
 			y = rand.nextInt(DroneArena.h - 1);
 			
-//			arr[0] = y;
-//			arr[1] = w;
 			
-			checkForDuplicate(droneSize,w, y,  rand);
+		// check again if the newly created position is occupied. 	
+			isHere(droneSize,w, y,  rand);
 	}
 	
-	public void checkForDuplicate(int droneSize, int w, int y, String errorMessage) {
+	
+    // check if the position of the newly added drone is occupied. 
+	public void isHere(int droneSize, int w, int y, Random rand) {
 		
 		for(int i = 0; i < dronesArray.size() ; i++) {
 			
-			if((dronesArray.get(i).droneY) == y && dronesArray.get(i).droneX == w) {
-			System.out.println(errorMessage);
-			System.exit(y);
-			
-				
-		}
-	}
-}
-	
-	public void checkForDuplicate(int droneSize, int w, int y, Random rand) {
-		
-		for(int i = 0; i < dronesArray.size() ; i++) {
-			
+			// if yes then try to find a new place, if not then just added it to where it's original place. 
 			if((dronesArray.get(i).droneY) == y && dronesArray.get(i).droneX == w) DroneLocationOccupied(droneSize,w, y, rand);}
 		}
 

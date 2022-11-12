@@ -30,8 +30,16 @@ public class DroneInterface {
 		ch = scanner.next().charAt(0);
 		
 		switch(ch) {
-		
-		
+		case 'A':
+		case 'a':
+			
+	if(!ArenaExist(myArena.getH(), myArena.getW())) {
+				
+			}else {
+				myArena.addDrone(); // Adds a drone in a unique random position
+				
+			}
+			break;
 		
 		case 'c':
 		case 'C':
@@ -51,26 +59,35 @@ public class DroneInterface {
 		case 'D':
 				
 			if(!ArenaExist(myArena.getH(), myArena.getW())) {
-				System.out.println("Please Create a new Arena by pressing the letter c for Create!");
+				
 			}else {
 				displayInterface();
+				
 			}
+				
+
+			break;
+		case 'I':
+		case 'i':
+			if(!ArenaExist(myArena.getH(), myArena.getW())) {
+				
+			}
+			System.out.println(myArena.toString());
 			break;
 		case 'V':
 		case 'v':
 			viewOnly(); // Display arena with no drones. 
 			break;
-		case 'A':
-		case 'a':
-			myArena.addDrone(); // Adds a drone in a unique random position
-			break;
+	
 		case 'M':
 		case 'm':
-			myArena.moveArena();
-			break;
-		case 'I':
-		case 'i':
-			System.out.println(myArena.toString());
+			
+			if(!ArenaExist(myArena.getH(), myArena.getW())) {
+				
+			}else {
+				myArena.moveAllDrones();
+				
+			}
 			break;
 		case 'S':
 		case 's':
@@ -112,6 +129,7 @@ public class DroneInterface {
 	// check if an arena exists
 	public boolean ArenaExist(int height, int width) {
 		if(height == 0 || width == 0) {
+			System.out.println("Please Create a new Arena by pressing the letter c for Create!");
 			return false;
 		}
 		return true;

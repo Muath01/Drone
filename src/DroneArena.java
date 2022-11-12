@@ -3,6 +3,8 @@ package src;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import src.Directions.direction;
+
 /**
  * @author muath
  *
@@ -41,33 +43,46 @@ public class DroneArena {
 
 		if(dronesArray.size() >= 1) { // if the arena has drones, check for duplicates. 
 			isHere(dronesArray.size(), w, y, rand);
-
-			dronesArray.add(new Drone(w, y));
-			dronesArray.get(dronesArray.size() -1).droneId++;
+			
+			Drone newDrone = new Drone(w, y, direction.getRandomDirection()); // w&y set in this function, getRandom... sets a random dir from the enum in class Direction 
+			dronesArray.add(newDrone);
 			
 		}
 
 		else { // if there are no items in the drone. add a new drone with w and y coordinates, because there are no duplicates by definition. 
-			dronesArray.add(new Drone(w, y));
-			dronesArray.get(dronesArray.size() -1).droneId++;
+			Drone newDrone = new Drone(w, y, direction.getRandomDirection()); // w&y set in this function, getRandom... sets a random dir from the enum in class Direction 
+			dronesArray.add(newDrone);
 		}
 
 	}
 	
 	
 	
-	public void moveAllDrones() {
-		dronesArray.get(dronesArray.size()-1).moveDrone(this, dronesArray);
-		this.draw();
+	public void moveAllDrones(DroneArena a) {
+		for(Drone d: dronesArray) {
+			d.tryToMove(a);
+		}
+	}
+	
+	public Drone getDroneAt(int x, int y) {
+		Drone temp = null;
+		
+		for(Drone a: dronesArray) {
+			if(a.isHere(x, y) == true) {
+				temp = a;
+			}
+		}
+		return temp;
 	}
 
-	public int canGoHere(int x, int y, Directions.direction dir) {
-		int status = 0;
-		System.out.println("x: "+ x + " y: " + y);
-		if(x < 1 || x >= w -1) status += 1;
-		if(y < 1 || y >= h -1) status += 2;
+	public boolean tryHere(int x, int y) {
 		
-		return status;
+		if(getDroneAt(x, y) != null || x >= w-1 || y >= h-1 || x < 1 || y < 1) {
+			return false;
+		}else {
+			return true;
+		}
+		
 	}
 	
 	@Override
@@ -127,35 +142,6 @@ public class DroneArena {
 	}
 	
 	
-	public void draw(){
-
-		this.createArena();
-		this.showDrone();
-		for(int i = 0; i < myarr.length; i++){
-			System.out.println(myarr[i]);
-		}
-	}
-
-	public void moveDrones(){
-
-		try {
-			for(int i = 0; i < 350; i++){
-                Thread.sleep(150);
-				this.moveAllDrones();
-				this.draw();
-			}
-			
-		} catch (Exception e) {
-           
-            // catching the exception
-            System.out.println(e);
-        }
-	}
-
-
-
-	
-
 	
 	// this function is invoked to find a newly place for a newly created drone who's original position is occupied. 
 	public void DroneLocationOccupied(int droneSize, int w, int y, Random rand) {

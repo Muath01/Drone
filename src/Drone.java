@@ -12,19 +12,19 @@ public class Drone {
 	
 	int droneX, droneY, droneId, dy, dx; // droneX & droneY are the positions of the drone, 
 	DroneArena arena;
-	Directions.direction droneDirection;
 	private static int counter;
+	private direction droneDirection;
 
 	
 
-	public Drone(int x, int y) {
+	public Drone(int x, int y, direction d) {
 		
 		droneX = x;
 		droneY = y;
 		this.droneId = counter++;
 		dy = 1;
 		dx = 1;
-		droneDirection = direction.getRandomDirection();
+		droneDirection = d;
 	}
 
 
@@ -60,35 +60,53 @@ public class Drone {
 		return location;
 	}
 	
-	public void moveDrone(DroneArena da, ArrayList<Drone> drone) {
+	public void tryToMove(DroneArena a) {
 		
 							
-		for(int i = 0; i < drone.size(); i++) {
-			int newx = drone.get(i).droneX + dx;
-			int newy = drone.get(i).droneY + dy;
-//			System.out.println(dx);
-			switch(da.canGoHere(newx, newy, droneDirection)) {
+			switch(droneDirection) {
 			
-				case 0:
-					drone.get(i).droneX = newx;
-					drone.get(i).droneY = newy;
+				case NORTH:
+					System.out.println("hereeeeee");
+					if(a.tryHere(droneX - 1, droneY)) {
+						droneX = droneX - 1;
+					}else {
+						droneDirection = droneDirection.nextDirection();
+					}
 					break;
-				case 1:
-//					drone.get(i).droneX = newx;
-//					drone.get(i).droneY = newy;
-					dx = -dx;
+				case EAST:
+					System.out.println("hereeeeee");
+					if(a.tryHere(droneX, droneY + 1)) {
+						droneY = droneY + 1;
+					}else {
+						droneDirection = droneDirection.nextDirection();
+					}
 					break;
-				case 2:
-					dy = -dy;
+				case SOUTH:
+					System.out.println("hereeeeee");
+					if(a.tryHere(droneX + 1, droneY)) {
+						droneX = droneX +1 ;
+					}else {
+						droneDirection = droneDirection.nextDirection();
+					}
 					break;
-				case 3:
-					dx = -dx;
-					dy = -dy;
-					break;
+				case WEST:
+					System.out.println("hereeeeee");
+					if(a.tryHere(droneX, droneY -1)) {
+						droneY = droneY - 1;
+					}else {
+						droneDirection = droneDirection.nextDirection();
+					}
 				
 			}
-		}
 
+	}
+	
+	public boolean isHere(int tx, int ty) {
+		if(tx == droneX && ty == droneY) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public void displayDrone(ConsoleCanvas c) {

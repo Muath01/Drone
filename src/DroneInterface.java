@@ -1,12 +1,14 @@
 package src;
 
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class DroneInterface {
 	
 	private Scanner scanner;
 	DroneArena myArena;
 	ConsoleCanvas myCanvas;
+	private char borderSign; 
 //	ConsoleCanvas myCanvas;
 //	ConsoleCanvas canvas = new ConsoleCanvas();
 	
@@ -49,6 +51,8 @@ public class DroneInterface {
 			canvasW = scanner.nextInt();
 			System.out.println("Enter Height: ");
 			canvasY = scanner.nextInt();
+			System.out.println("Enter a sign or a letter to represent the border: ");
+			borderSign = scanner.next().charAt(0);
 			
 			// Draw an Arena based on the inputted values. 
 			
@@ -85,7 +89,9 @@ public class DroneInterface {
 			if(!ArenaExist(myArena.getH(), myArena.getW())) {
 				
 			}else {
-				myArena.moveAllDrones();
+				myArena.moveAllDrones(myArena);
+				displayInterface();
+
 				
 			}
 			break;
@@ -95,7 +101,16 @@ public class DroneInterface {
 			break;
 		case 'K':
 		case 'k':
-			myArena.moveDrones();
+			for(int i = 0; i < 150; i++) {
+				try {
+					Thread.sleep(150);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				myArena.moveAllDrones(myArena);
+				displayInterface();				
+			}
 			break;
 		case 'x':
 			ch = 'X';
@@ -112,7 +127,7 @@ public class DroneInterface {
 	
 	// displays arena with drones. 
 	public void displayInterface(){
-		ConsoleCanvas field = new ConsoleCanvas(myArena.getW(), myArena.getH());
+		ConsoleCanvas field = new ConsoleCanvas(myArena.getW(), myArena.getH(), borderSign);
 		myArena.showDrones(field);
 		System.out.println(field.toString());
 	}
@@ -120,7 +135,7 @@ public class DroneInterface {
 	
 	//Displays arena with no drones. 
 	public void viewOnly(){
-		ConsoleCanvas field = new ConsoleCanvas(myArena.getW(), myArena.getH());
+		ConsoleCanvas field = new ConsoleCanvas(myArena.getW(), myArena.getH(), borderSign);
 		System.out.println(field.toString());
 	}
 	

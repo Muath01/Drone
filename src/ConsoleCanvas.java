@@ -8,20 +8,27 @@ public class ConsoleCanvas  {
     private int canvasX;
     private int canvasY;
 
-    public ConsoleCanvas(int x, int y){
+    public ConsoleCanvas(int x, int y, char border){
 
         canvasX = x ;
         canvasY = y;
         myarr = new char[canvasX][canvasY];
 
-        createArena();
+        createArena(border);
     }
 
-    public void createArena() {
+    public void createArena(char border) {
 
 
         for(int i = 0; i < canvasX; i++){
             for(int j = 0; j < canvasY; j++){
+            	/** 
+            	 in the if statement, each check draws a border, 
+            	 the first check draws the bottom border, 
+            	 the second check draws the top border,
+            	 the third check draws the left border, 
+            	 the fourth check draws the right border. 
+            	 **/
                 if(i > canvasX-2 || i == 0 || j == 0 || j == canvasY-1){
                     myarr[i][j] = '#';
                 }else{
@@ -52,8 +59,7 @@ public class ConsoleCanvas  {
         for(int i = 0; i < canvasX; i++) {
         	for(int j = 0; j < canvasY; j++) {
         		
-        		System.out.println("i:" + canvasY);
-        		canvas += myarr[i][j] + " ";
+        		canvas += myarr[i][j] + " "; //fills the canvas string with array items + 1 space. 
         	}
         	canvas += "\n";
         }
@@ -61,10 +67,10 @@ public class ConsoleCanvas  {
 
     }
     
-    public static void main(String[] arg) {
-    	ConsoleCanvas n = new ConsoleCanvas(10, 10);
-    	System.out.println(n.toString());
-    }
+//    public static void main(String[] arg) {
+//    	ConsoleCanvas n = new ConsoleCanvas(10, 10);
+//    	System.out.println(n.toString());
+//    }
 
    
 }

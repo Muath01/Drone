@@ -90,22 +90,10 @@ public class Drone {
 		}
 
 	}
-
 	
-	
-
-
-
-	
-//	public static void main(String[] args) {
-//
-////		Drone d = new Drone(10, 15);
-////		System.out.println(d.toString());
-////		Drone dy = new Drone(110, 15);
-////		System.out.println(dy.toString());
-////		Drone dx = new Drone("5 3");
-////		System.out.println(dx.toString());
-//	}
+	public void displayDrone(ConsoleCanvas c) {
+		c.showIt(droneX, droneY, 'D');
+	}
 		
 	
 }

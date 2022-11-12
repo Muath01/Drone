@@ -39,12 +39,35 @@ public class ConsoleCanvas  {
                 System.out.println(myarr[i]);
             }
     }
+    
+    public void showIt(int droneX, int droneY, char c) { 
+    	myarr[droneX][droneY] = c; // adds the char representing the drone to the array that prints the canvas, and instead of printing empty char ' ' it now print a drone char. 
+    }
+    
+    public void arenaOnly() {
+    	char[][] ao = new char[canvasY][canvasX];
+    	
+    	for(int i = 0; i < canvasX; i++) {
+    		for(int j = 0; j < canvasY; j++) {
+    			if(myarr[i][j] == 'D') {
+    				myarr[i][j] = ' ';
+    			}
+    		}
+    	}
+    	
+    }
 
     public String toString() {
     
-        String myString = "Canvas with size " + canvasX + " by " + canvasY;
-    
-        return myString;
+        String canvas = "";
+        
+        for(int i = 0; i < canvasX; i++) {
+        	for(int j = 0; j < canvasY; j++) {
+        		canvas += myarr[i][j] + " ";
+        	}
+        	canvas += "\n";
+        }
+        return canvas;
 
     }
 

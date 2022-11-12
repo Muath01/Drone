@@ -81,6 +81,15 @@ public class DroneArena {
 		}
 			return "DroneArena size " + w + " by " + h + " with Drone " + dronesArray.get(dronesArray.size() -1).droneId + " at " + dronesArray.get(dronesArray.size() -1).droneX + ", " + dronesArray.get(dronesArray.size() -1).droneY ;
 	}
+	
+	
+	// loops over array in consoleCanvas to show all the drones within the arena. 
+	
+	public void showDrones(ConsoleCanvas c) {
+		for(Drone d : dronesArray) {
+			d.displayDrone(c);
+		}
+	}
 
 
 

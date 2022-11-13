@@ -30,7 +30,7 @@ public class ConsoleCanvas  {
             	 the fourth check draws the right border. 
             	 **/
                 if(i > canvasX-2 || i == 0 || j == 0 || j == canvasY-1){
-                    myarr[i][j] = '#';
+                    myarr[i][j] = border;
                 }else{
                     myarr[i][j] = ' ';
                 }
@@ -67,10 +67,10 @@ public class ConsoleCanvas  {
 
     }
     
-//    public static void main(String[] arg) {
-//    	ConsoleCanvas n = new ConsoleCanvas(10, 10);
-//    	System.out.println(n.toString());
-//    }
+    public static void main(String[] arg) {
+    	ConsoleCanvas n = new ConsoleCanvas(5, 15, '#');
+    	System.out.println(n.toString());
+    }
 
    
 }

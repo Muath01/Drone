@@ -11,21 +11,17 @@ import src.Directions.direction;
  */
 public class DroneArena {
 	
-	char border = '#';
 	static int w;
 	static int h;
-	char[][] myarr;
 
 	ArrayList<Drone> dronesArray = new ArrayList<Drone>();
 	
 	Drone myDrone;
 	
 	public DroneArena(int w, int h) {
-		this.myarr = new char[h][w];
 
 		DroneArena.w = w;
 		DroneArena.h = h;
-//		this.createArena();
 
 	}
 	
@@ -62,6 +58,10 @@ public class DroneArena {
 		for(Drone d: dronesArray) {
 			d.tryToMove(a);
 		}
+	}
+	
+	public DroneArena getArena() {
+		return this;
 	}
 	
 	public Drone getDroneAt(int x, int y) {
@@ -125,21 +125,7 @@ public class DroneArena {
 	}
 
 	
-	public void createArena() {
 
-		for(int i = 0; i < DroneArena.h; i++){
-			for(int j = 0; j < DroneArena.w; j++){
-				if(j > DroneArena.w-2 || j == 0 || i == 0 || i == DroneArena.h-1){
-					myarr[i][j] = '#';
-				}else{
-					myarr[i][j] = ' ';
-				}
-			}
-
-
-		}
-
-	}
 	
 	
 	
@@ -165,15 +151,7 @@ public class DroneArena {
 			if((dronesArray.get(i).droneY) == y && dronesArray.get(i).droneX == w) DroneLocationOccupied(droneSize,w, y, rand);}
 		}
 
-//	Vertical function draws the sides of the arena and the space with in it.
 
-	public void showDrone() {
 
-		for (int i = 0; i < dronesArray.size(); i++) {
-			for (int j = 1; j < DroneArena.h; j++) {
-
-				for (int k = 1; k < DroneArena.w; k++) {
-					if ((j == dronesArray.get(i).droneY) && (k == dronesArray.get(i).droneX)) {
-						myarr[j][k]= 'D';}}}}}
 
 }

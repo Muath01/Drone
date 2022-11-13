@@ -1,5 +1,8 @@
 package src;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
@@ -28,14 +31,15 @@ public class DroneInterface {
 	char ch = ' ';
 	
 	do {
-		System.out.print("Enter (A)dd drone, (D)isplay arena with Drones, (S)how arena without drones,  (M)ove Drone, (S)ize, (V)iew Arena with no drones, get (I)nformation or e(X)it : ");
+		System.out.print("Enter (A)dd drone, N to add custom amount of drones,  (D)isplay arena with Drones, (S)how arena without drones,  (M)ove Drone, (S)ize, (V)iew Arena with no drones, get (I)nformation or e(X)it : ");
 		ch = scanner.next().charAt(0);
+		scanner.nextLine();
 		
 		switch(ch) {
 		case 'A':
 		case 'a':
 			
-	if(!ArenaExist(myArena.getH(), myArena.getW())) {
+			if(!ArenaExist(myArena.getH(), myArena.getW())) {
 				
 			}else {
 				myArena.addDrone(); // Adds a drone in a unique random position
@@ -49,11 +53,16 @@ public class DroneInterface {
 			
 			System.out.println("Enter width: ");
 			canvasW = scanner.nextInt();
+			scanner.nextLine(); // This line you have to add (It consumes the \n character)
+
 			System.out.println("Enter Height: ");
 			canvasY = scanner.nextInt();
+			scanner.nextLine(); // This line you have to add (It consumes the \n character)
+
 			System.out.println("Enter a sign or a letter to represent the border: ");
 			borderSign = scanner.next().charAt(0);
-			
+			scanner.nextLine(); // This line you have to add (It consumes the \n character)
+
 			// Draw an Arena based on the inputted values. 
 			
 			myArena = new DroneArena(canvasW, canvasY);
@@ -95,6 +104,24 @@ public class DroneInterface {
 				
 			}
 			break;
+			
+		case 'n':
+		case 'N':
+			System.out.println("Enter the amount of drones you want to add: ");
+			int customNumDrones = scanner.nextInt();
+			scanner.nextLine(); // This line you have to add (It consumes the \n character)
+
+			
+			if(!ArenaExist(myArena.getH(), myArena.getW())) {
+				
+			}else {
+				myArena.addDrone();
+				for(int i = 0; i < customNumDrones; i++) {
+					myArena.addDrone();
+					}
+			}
+			
+			break;
 		case 'S':
 		case 's':
 			myCanvas.draw();
@@ -111,6 +138,40 @@ public class DroneInterface {
 				myArena.moveAllDrones(myArena);
 				displayInterface();				
 			}
+			break;
+			
+		case 'f':
+		case 'F':
+			char action;
+			do{
+			
+			System.out.println("Welcome to the file control system, you can (C)reate a file, (S)ave a file,  (l)oad a file");
+			action = scanner.next().charAt(0);
+			scanner.nextLine(); // This line you have to add (It consumes the \n character)
+
+				switch(action) {
+				case 'c':
+				case 'C':
+					System.out.println("enter a file name to store the drones in: ");
+					String fileName = scanner.nextLine();
+					System.out.println("here");
+					try {
+						BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
+						
+						
+						for(Drone d: myArena.dronesArray) {
+							writer.write(d + "\n");
+						}
+						
+						writer.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+					break;
+				}
+			}while(action != 'b');
 			break;
 		case 'x':
 			ch = 'X';

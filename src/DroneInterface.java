@@ -1,6 +1,8 @@
 package src;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -51,11 +53,11 @@ public class DroneInterface {
 		case 'C':
 			// Choose the dimension of the array. Number must be whole. 
 			
-			System.out.println("Enter width: ");
+			System.out.println("Enter Height: ");
 			canvasW = scanner.nextInt();
 			scanner.nextLine(); // This line you have to add (It consumes the \n character)
 
-			System.out.println("Enter Height: ");
+			System.out.println("Enter Width: ");
 			canvasY = scanner.nextInt();
 			scanner.nextLine(); // This line you have to add (It consumes the \n character)
 
@@ -158,9 +160,9 @@ public class DroneInterface {
 					try {
 						BufferedWriter writer = new BufferedWriter(new FileWriter(fileName + ".txt"));
 						
-						
+						writer.write(myArena.w + " " + myArena.h + " " + borderSign + "\n");
 						for(Drone d: myArena.dronesArray) {
-							writer.write(d + "\n");
+							writer.write(d.droneX + " " + d.droneY + " " + d.getDirection().toString() + "\n");
 						}
 						
 						writer.close();
@@ -170,6 +172,41 @@ public class DroneInterface {
 					}
 				
 					break;
+					
+				case 'l':
+				case 'L':
+					System.out.println("Enter the name of the files you want to load? ");
+					fileName = scanner.nextLine();
+					try {
+						BufferedReader reader = new BufferedReader(new FileReader(fileName + ".txt")); 
+						String line = reader.readLine();
+						
+						String[] loadArena = line.split(" ");
+						
+//						System.out.println(loadArena[0] + loadArena[1] + loadArena[2]);
+						
+						int ax = Integer.parseInt(loadArena[0]);
+						int ay = Integer.parseInt(loadArena[1]);
+						borderSign = loadArena[2].charAt(0);
+						myArena = new DroneArena(ax, ay);
+						displayInterface();
+						while((line = reader.readLine()) != null) {
+//							line = reader.readLine();
+							String[] numbers = line.split(" ");
+							int x = Integer.parseInt(numbers[0]);
+							int y = Integer.parseInt(numbers[1]);
+							String droned = numbers[2];
+							System.out.println(droned);
+//							System.out.println("drone direction: " + src.Directions.direction.droned);
+							
+							myArena.dronesArray.add(new Drone(x, y, src.Directions.direction.NORTH));
+							
+						}
+						reader.close();
+						
+					} catch(IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}while(action != 'b');
 			break;
@@ -192,6 +229,7 @@ public class DroneInterface {
 		myArena.showDrones(field);
 		System.out.println(field.toString());
 	}
+
 	
 	
 	//Displays arena with no drones. 

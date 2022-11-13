@@ -1,11 +1,12 @@
-Drone 0 is at 4, 2
-Drone 1 is at 14, 7
-Drone 2 is at 7, 2
-Drone 3 is at 16, 17
-Drone 4 is at 6, 12
-Drone 5 is at 3, 4
-Drone 6 is at 12, 17
-Drone 7 is at 1, 13
-Drone 8 is at 17, 5
-Drone 9 is at 12, 16
-Drone 10 is at 18, 5
+10 15 '
+6 1 NORTH
+2 4 SOUTH
+3 9 NORTH
+5 4 WEST
+1 11 NORTH
+8 5 EAST
+7 12 SOUTH
+1 4 WEST
+5 6 WEST
+5 10 WEST
+3 9 EAST

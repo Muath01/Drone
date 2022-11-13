@@ -13,7 +13,7 @@ public class Drone {
 	int droneX, droneY, droneId, dy, dx; // droneX & droneY are the positions of the drone, 
 	DroneArena arena;
 	private static int counter;
-	private direction droneDirection;
+	public direction droneDirection;
 
 	
 
@@ -41,6 +41,8 @@ public class Drone {
 	public int getDroneX() {
 		return droneX;
 	}
+	
+	
 
 
 	public int getDroneY() {
@@ -51,6 +53,10 @@ public class Drone {
 		droneX = setX;
 		droneY = setY;
 		
+	}
+	
+	public Directions.direction getDirection(){
+		return droneDirection;
 	}
 
 
@@ -66,7 +72,6 @@ public class Drone {
 			switch(droneDirection) {
 			
 				case NORTH:
-					System.out.println("hereeeeee");
 					if(a.tryHere(droneX - 1, droneY)) {
 						droneX = droneX - 1;
 					}else {
@@ -74,7 +79,6 @@ public class Drone {
 					}
 					break;
 				case EAST:
-					System.out.println("hereeeeee");
 					if(a.tryHere(droneX, droneY + 1)) {
 						droneY = droneY + 1;
 					}else {
@@ -82,7 +86,6 @@ public class Drone {
 					}
 					break;
 				case SOUTH:
-					System.out.println("hereeeeee");
 					if(a.tryHere(droneX + 1, droneY)) {
 						droneX = droneX +1 ;
 					}else {
@@ -90,7 +93,6 @@ public class Drone {
 					}
 					break;
 				case WEST:
-					System.out.println("hereeeeee");
 					if(a.tryHere(droneX, droneY -1)) {
 						droneY = droneY - 1;
 					}else {

@@ -10,7 +10,7 @@ public class ConsoleCanvas  {
 
     public ConsoleCanvas(int x, int y, char border){
 
-        canvasX = x ;
+        canvasX = x;
         canvasY = y;
         myarr = new char[canvasX][canvasY];
 
@@ -67,10 +67,10 @@ public class ConsoleCanvas  {
 
     }
     
-    public static void main(String[] arg) {
-    	ConsoleCanvas n = new ConsoleCanvas(5, 15, '#');
-    	System.out.println(n.toString());
-    }
+//    public static void main(String[] arg) {
+//    	ConsoleCanvas n = new ConsoleCanvas(15, 5, '#');
+//    	System.out.println(n.toString());
+//    }
 
    
 }

@@ -2,8 +2,10 @@ package src;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -147,7 +149,7 @@ public class DroneInterface {
 			char action;
 			do{
 			
-			System.out.println("Welcome to the file control system, you can (C)reate a file, (S)ave a file,  (l)oad a file");
+			System.out.println("Welcome to the file control system, you can (C)reate a file, (L)oad a file,  go (B)ack to the Arena control centre");
 			action = scanner.next().charAt(0);
 			scanner.nextLine(); // This line you have to add (It consumes the \n character)
 
@@ -188,7 +190,9 @@ public class DroneInterface {
 						int ay = Integer.parseInt(loadArena[1]);
 						borderSign = loadArena[2].charAt(0);
 						myArena = new DroneArena(ax, ay);
-						displayInterface();
+						
+						
+						
 						while((line = reader.readLine()) != null) {
 							String[] numbers = line.split(" ");
 							int x = Integer.parseInt(numbers[0]);
@@ -201,7 +205,32 @@ public class DroneInterface {
 						reader.close();
 						
 					} catch(IOException e) {
-						e.printStackTrace();
+						// Array to store the names of the files names in them, and present them to the user as a choice: 
+	
+						try {
+							
+							File f = new File("C:\\Users\\muath\\java-projects\\drone");
+							
+							FilenameFilter filter = new FilenameFilter() {
+				                @Override
+				                public boolean accept(File f, String name) {
+				                    // We want to find only .c files
+				                    return name.endsWith(".txt");
+				                }
+				                
+				            };
+				            
+				            File[] files = f.listFiles(filter);
+				            
+				            for(int i = 0; i < files.length; i++) {
+				            	System.out.println(files[i].getName());
+				            }
+				            
+							
+						} catch(Exception er) {
+				            System.err.println(e.getMessage());
+
+						}
 					}
 				}
 			}while(action != 'b');
@@ -225,8 +254,9 @@ public class DroneInterface {
 		myArena.showDrones(field);
 		System.out.println(field.toString());
 	}
-
 	
+	
+
 	
 	//Displays arena with no drones. 
 	public void viewOnly(){

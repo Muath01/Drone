@@ -183,7 +183,6 @@ public class DroneInterface {
 						
 						String[] loadArena = line.split(" ");
 						
-//						System.out.println(loadArena[0] + loadArena[1] + loadArena[2]);
 						
 						int ax = Integer.parseInt(loadArena[0]);
 						int ay = Integer.parseInt(loadArena[1]);
@@ -191,15 +190,12 @@ public class DroneInterface {
 						myArena = new DroneArena(ax, ay);
 						displayInterface();
 						while((line = reader.readLine()) != null) {
-//							line = reader.readLine();
 							String[] numbers = line.split(" ");
 							int x = Integer.parseInt(numbers[0]);
 							int y = Integer.parseInt(numbers[1]);
-							String droned = numbers[2];
-							System.out.println(droned);
-//							System.out.println("drone direction: " + src.Directions.direction.droned);
+							String droneDirection = numbers[2];
 							
-							myArena.dronesArray.add(new Drone(x, y, src.Directions.direction.NORTH));
+							myArena.dronesArray.add(new Drone(x, y, src.Directions.direction.valueOf(droneDirection)));
 							
 						}
 						reader.close();
@@ -256,5 +252,6 @@ public class DroneInterface {
 	public static void main(String[] args) {
 //		System.out.println("hello");
 		DroneInterface cc = new DroneInterface();
+//		System.out.println("hello");
 	}
 }

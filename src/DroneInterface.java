@@ -179,6 +179,8 @@ public class DroneInterface {
 				case 'L':
 					System.out.println("Enter the name of the files you want to load? ");
 					fileName = scanner.nextLine();
+					fileName.substring(0, fileName.lastIndexOf('.'));
+
 					try {
 						BufferedReader reader = new BufferedReader(new FileReader(fileName + ".txt")); 
 						String line = reader.readLine();
@@ -205,9 +207,10 @@ public class DroneInterface {
 						reader.close();
 						
 					} catch(IOException e) {
-						// Array to store the names of the files names in them, and present them to the user as a choice: 
-	
+						System.out.println("\n\nError! No file with such name exists, here is a list of existing files, choose one:\n ");
+//						 Array to store the names of the files names in them, and present them to the user as a choice: 
 						try {
+							
 							
 							File f = new File("C:\\Users\\muath\\java-projects\\drone");
 							
@@ -223,7 +226,7 @@ public class DroneInterface {
 				            File[] files = f.listFiles(filter);
 				            
 				            for(int i = 0; i < files.length; i++) {
-				            	System.out.println(files[i].getName());
+				            	System.out.println(files[i].getName().split("."));
 				            }
 				            
 							
@@ -231,6 +234,8 @@ public class DroneInterface {
 				            System.err.println(e.getMessage());
 
 						}
+						
+						
 					}
 				}
 			}while(action != 'b');
